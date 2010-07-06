@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<score:SContext xmlns:score="http://scoreabm.org/score" label="distgen" ID="distgen" pluralLabel="distgens">
+  <implementation package="distgen" className="" basePath="../dist_gen" mode="AUTO"/>
+</score:SContext>
