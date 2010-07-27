@@ -18,6 +18,8 @@ import repast.simphony.util.ContextUtils;
 @AgentAnnot(displayName = "Agent")
 public class SimpleAgent {
 	private double year; 		// The simulation year
+	private double energyCost;
+	private double avgDemand;
 	
 	// Schedule the step method for agents.  The method is scheduled starting at 
 	// tick one with an interval of 1 tick.  Specifically, the step starts at 1, and
@@ -26,6 +28,13 @@ public class SimpleAgent {
 	public void step() {
 		// Override by subclasses
 	}
+//	public double energyCostGrid(double avgDemand) {
+//		return energyCost;
+//	}
+//	public void chooseNewEnergy() {
+//		return;
+//	}
+	
 	
 }
 

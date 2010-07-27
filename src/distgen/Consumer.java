@@ -16,6 +16,7 @@ import org.jscience.mathematics.vector.*;
 import org.jscience.physics.amount.*;
 
 import cern.jet.random.Poisson;
+import cern.jet.random.Uniform;
 import repast.simphony.adaptation.neural.*;
 import repast.simphony.adaptation.regression.*;
 import repast.simphony.context.*;
@@ -53,15 +54,13 @@ import repast.simphony.query.space.graph.NetworkAdjacent;
 
 public class Consumer extends SimpleAgent{
 //	private int consumerId; 		// The consumer's ID
-	private double eUse = 0;			// electricity use
-	private double gUseHeat;		// gas use for heat
-	private double gUseElec;		// gas use for electricity
+	private double eUse = 0;		// electricity use
+	private double ageOfEnergy = 0;		// age of energy system
 	private String eSource;			// electricity source
-	private String heatSource;		// heat source
+	//private String heatSource;		// heat source
 	private double eCost;			// electricity cost
-	private double eToSell;			// electricity to sell
 	//private String consumerType;	// consumer type
-	private String housingType;		// housing type
+	//private String housingType;		// housing type
 	
 	/**
     *
@@ -70,13 +69,28 @@ public class Consumer extends SimpleAgent{
     *
     */
    @Parameter (displayName = "eUse", usageName = "eUse")
-   private double getEuse() {
+   public double getEuse() {
        return eUse;
    }
    private void setEuse(double newValue) {
        eUse = newValue;
    }
 
+   @Parameter (displayName = "eAge", usageName = "eAge")
+   private double getAgeOfEnergy() {
+       return ageOfEnergy;
+   }
+   private void setEage(double newValue) {
+       eUse = newValue;
+   }
+   
+   @Parameter (displayName = "eSource", usageName = "eSource")
+   private String getESource() {
+       return eSource;
+   }
+   private void setESource(String newValue) {
+       eSource = newValue;
+   }
     /**
      *
      * This value is used to automatically generate agent identifiers.
@@ -121,8 +135,9 @@ public class Consumer extends SimpleAgent{
 		double housingType = (Double)p.getValue("housingType");
 		double avgDemand = (Double)p.getValue("avgDemand");
 		String eSource = (String)p.getValue("eSource");
-		String heatSource = (String)p.getValue("heatSource");
+		// String heatSource = (String)p.getValue("heatSource");
 		double eCost = (Double)p.getValue("eCost");
+		double ageOfEnergy = (Double)p.getValue("ageOfEnergy");
 		
 		//set the seed, need to test how leaving this out and having the seed based on the system clock affects the output
 		RandomHelper.setSeed(777);	//could also make this a parameter
@@ -130,11 +145,21 @@ public class Consumer extends SimpleAgent{
 		// initialize demand around a Poisson distribution
 		Poisson randomStream = (Poisson) RandomHelper.createPoisson(avgDemand);
 		
-
-		this.setEuse(randomStream.nextInt());    // set the initial energy
+		this.setEuse(randomStream.nextInt());    // set the initial energy demand
 		double randomAvgDemand = this.getEuse();
 		System.out.println(randomAvgDemand);
 		System.out.println(randomStream);
+		
+		// initialize ageOfEnergy (which determines when a consumer can switch energy sources) around a uniform distribution
+		// could change this to a distribution around the actual age of housing stock
+		Uniform randomStreamUni = (Uniform) RandomHelper.createUniform(1,10);
+		
+		this.setEage(randomStreamUni.nextInt());    // set the age of the consumer's energy system
+		double randomAgeOfEnergy = this.getAgeOfEnergy();
+		System.out.println(randomAgeOfEnergy);
+		System.out.println(randomStreamUni);
+		
+		
 	}
 
     /**
@@ -143,5 +168,12 @@ public class Consumer extends SimpleAgent{
      * @method step
      *
      */
-
+	public void step() {
+	    // Get the context in which the consumer resides.
+			Context context = ContextUtils.getContext(this);
+			double eAge = this.getAgeOfEnergy();
+			if (eAge >= 10){
+				this.chooseNewEnergy();
+			}
+	}
 }

@@ -8,6 +8,7 @@
   <attributes label="InitialNumConsumers" ID="initialNumConsumers" pluralLabel="InitialNumConsumerss" sType="INTEGER" defaultValue="20"/>
   <attributes label="InitialNumGenerators" ID="initialNumGenerators" pluralLabel="InitialNumGeneratorss" sType="INTEGER" defaultValue="2"/>
   <attributes label="AvgDemand" ID="avgDemand" pluralLabel="AvgDemands" sType="INTEGER" defaultValue="12773"/>
+  <attributes label="AgeOfEnergy" ID="ageOfEnergy" pluralLabel="AgeOfEnergies" sType="INTEGER" defaultValue="5"/>
   <implementation package="distgen" className="" basePath="../dist_gen" mode="AUTO"/>
   <agents label="Consumer" ID="consumer" pluralLabel="Consumers">
     <implementation className="Consumer"/>
