@@ -28,13 +28,15 @@ public class SimpleAgent {
 	public void step() {
 		// Override by subclasses
 	}
-//	public double energyCostGrid(double avgDemand) {
-//		return energyCost;
-//	}
-//	public void chooseNewEnergy() {
-//		return;
-//	}
-	
+
+
+	public int isGrid() {
+		return 0;
+	}
+
+	public int isOther() {
+		return 0;
+	}
 	
 }
 

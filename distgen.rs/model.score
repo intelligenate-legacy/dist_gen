@@ -4,11 +4,12 @@
   <attributes label="HousingType" ID="housingType" pluralLabel="HousingTypes" sType="INTEGER" defaultValue="1"/>
   <attributes label="ESource" ID="eSource" pluralLabel="ESources" sType="STRING" defaultValue="grid"/>
   <attributes label="HeatSource" ID="heatSource" pluralLabel="HeatSources" sType="STRING" defaultValue="grid"/>
-  <attributes label="ECost" ID="eCost" pluralLabel="ECosts" sType="FLOAT" defaultValue="0.1" units=""/>
-  <attributes label="InitialNumConsumers" ID="initialNumConsumers" pluralLabel="InitialNumConsumerss" sType="INTEGER" defaultValue="20"/>
+  <attributes label="ECostGrid" ID="eCostGrid" pluralLabel="ECostGrids" sType="FLOAT" defaultValue="0.11" units=""/>
+  <attributes label="InitialNumConsumers" ID="initialNumConsumers" pluralLabel="InitialNumConsumerss" sType="INTEGER" defaultValue="200"/>
   <attributes label="InitialNumGenerators" ID="initialNumGenerators" pluralLabel="InitialNumGeneratorss" sType="INTEGER" defaultValue="2"/>
-  <attributes label="AvgDemand" ID="avgDemand" pluralLabel="AvgDemands" sType="INTEGER" defaultValue="12773"/>
-  <attributes label="AgeOfEnergy" ID="ageOfEnergy" pluralLabel="AgeOfEnergies" sType="INTEGER" defaultValue="5"/>
+  <attributes label="AvgDemand" ID="avgDemand" pluralLabel="AvgDemands" sType="FLOAT" defaultValue="12773"/>
+  <attributes label="AgeOfEnergy" ID="ageOfEnergy" pluralLabel="AgeOfEnergies" sType="FLOAT" defaultValue="5"/>
+  <attributes label="ECostOther" ID="eCostOther" pluralLabel="ECostOthers" sType="FLOAT" defaultValue="0.099"/>
   <implementation package="distgen" className="" basePath="../dist_gen" mode="AUTO"/>
   <agents label="Consumer" ID="consumer" pluralLabel="Consumers">
     <implementation className="Consumer"/>
@@ -19,10 +20,10 @@
   <agents label="SimpleAgent" ID="simpleAgent" pluralLabel="SimpleAgents">
     <implementation className="SimpleAgent"/>
   </agents>
-  <projections xsi:type="score:SGrid" label="Grid2D" ID="grid2D" pluralLabel="Grid2Ds" dimensionality="2">
-    <attributes xsi:type="score:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
-    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="20"/>
-    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="20"/>
-  </projections>
   <projections xsi:type="score:SNetwork" label="ConsumerNetwork" ID="consumerNetwork" pluralLabel="ConsumerNetworks"/>
+  <projections xsi:type="score:SGrid" label="Grid2D" ID="grid2D" pluralLabel="Grid2Ds" dimensionality="2" borderRule="PERIODIC">
+    <attributes xsi:type="score:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
+    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="50"/>
+    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="50"/>
+  </projections>
 </score:SContext>

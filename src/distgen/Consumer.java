@@ -53,12 +53,10 @@ import repast.simphony.space.graph.Network;
 import repast.simphony.query.space.graph.NetworkAdjacent;
 
 public class Consumer extends SimpleAgent{
-//	private int consumerId; 		// The consumer's ID
 	private double eUse = 0;		// electricity use
 	private double ageOfEnergy = 0;		// age of energy system
 	private String eSource;			// electricity source
 	//private String heatSource;		// heat source
-	private double eCost;			// electricity cost
 	//private String consumerType;	// consumer type
 	//private String housingType;		// housing type
 	
@@ -81,11 +79,11 @@ public class Consumer extends SimpleAgent{
        return ageOfEnergy;
    }
    private void setEage(double newValue) {
-       eUse = newValue;
+       ageOfEnergy = newValue;
    }
    
    @Parameter (displayName = "eSource", usageName = "eSource")
-   private String getESource() {
+   public String getESource() {
        return eSource;
    }
    private void setESource(String newValue) {
@@ -122,43 +120,50 @@ public class Consumer extends SimpleAgent{
      *
      */
 
-    // This constructor is used to create additional consumers
-	public Consumer (double energy){
-		this.setEuse(energy);               // assign the offspring energy
-	}
 
 	// This constructor is used to create initial consumers from the context creator
 	public Consumer(){
 		// Get the consumer type from the environment parameters
 		Parameters p = RunEnvironment.getInstance().getParameters();
 //		double consumerType = (Double)p.getValue("consumerType");
-		double housingType = (Double)p.getValue("housingType");
+		int housingType = (Integer)p.getValue("housingType");
 		double avgDemand = (Double)p.getValue("avgDemand");
 		String eSource = (String)p.getValue("eSource");
-		// String heatSource = (String)p.getValue("heatSource");
-		double eCost = (Double)p.getValue("eCost");
+//		String heatSource = (String)p.getValue("heatSource");
+//		double eCost = (Double)p.getValue("eCost");
 		double ageOfEnergy = (Double)p.getValue("ageOfEnergy");
+		double eCostGrid = (Double)p.getValue("eCostGrid");
+		double eCostOther = (Double)p.getValue("eCostOther");
 		
-		//set the seed, need to test how leaving this out and having the seed based on the system clock affects the output
-		RandomHelper.setSeed(777);	//could also make this a parameter
+		//setting the seed makes the random pulls from the distributions the same for each agent
+		//RandomHelper.setSeed(776);	//could also make this a parameter
 		
 		// initialize demand around a Poisson distribution
 		Poisson randomStream = (Poisson) RandomHelper.createPoisson(avgDemand);
 		
 		this.setEuse(randomStream.nextInt());    // set the initial energy demand
 		double randomAvgDemand = this.getEuse();
-		System.out.println(randomAvgDemand);
-		System.out.println(randomStream);
+		System.out.println("random avg demand " + randomAvgDemand + " - next int " + randomStream.nextInt());
+		//System.out.println(randomStream);
 		
 		// initialize ageOfEnergy (which determines when a consumer can switch energy sources) around a uniform distribution
 		// could change this to a distribution around the actual age of housing stock
-		Uniform randomStreamUni = (Uniform) RandomHelper.createUniform(1,10);
-		
-		this.setEage(randomStreamUni.nextInt());    // set the age of the consumer's energy system
+		Uniform randomStreamUni = (Uniform) RandomHelper.createUniform(1.0,100.0);
+		//System.out.println("first age of energy " + randomStreamUni.nextInt());
+		this.setEage(randomStreamUni.nextInt()/10);    // set the age of the consumer's energy system between 1 and 10 years
+		//System.out.println("random age of energy set to " + this.getAgeOfEnergy());
 		double randomAgeOfEnergy = this.getAgeOfEnergy();
-		System.out.println(randomAgeOfEnergy);
-		System.out.println(randomStreamUni);
+		System.out.println("age of energy " + randomAgeOfEnergy);
+		//System.out.println(randomStreamUni);
 		
+		// initialize electricity source, based on current (2010) choice of energy supplier grid is used by 98% and distributed generation is used by 2% 
+		if (randomStreamUni.nextInt() > 2){
+			this.setESource("grid");
+		}
+		else{
+			this.setESource("other");
+		}
+		System.out.println("Energy source set to " + this.getESource());
 		
 	}
 
@@ -171,9 +176,73 @@ public class Consumer extends SimpleAgent{
 	public void step() {
 	    // Get the context in which the consumer resides.
 			Context context = ContextUtils.getContext(this);
+			
 			double eAge = this.getAgeOfEnergy();
-			if (eAge >= 10){
+			System.out.println("energy age pre " + this.getAgeOfEnergy());
+			if (eAge >= 10){						// consumers are able to change their energy source after 10 years
 				this.chooseNewEnergy();
 			}
+			else {
+				eAge++;
+				this.setEage(eAge); // increment the age of the energy source
+			}
+			System.out.println("energy age post " + this.getAgeOfEnergy());
 	}
+	
+	private void chooseNewEnergy() {
+		String grid = "grid";
+		String other = "other";
+		System.out.println("Choosing new energy, original energy source was " + getESource());
+		if(getESource().equals(grid)){
+			if(Generator.getEnergyCost(getEuse(), "other") > Generator.getEnergyCost(getEuse(), "grid"))	{	
+				setESource("grid");						// set to grid since it's cheaper
+				this.setEage(0); 						// set the age of the energy source back to zero
+				System.out.println("New source is grid");
+			}
+			else{
+				setESource("other");
+				this.setEage(0); 						// set the age of the energy source back to zero
+				System.out.println("New source is other");
+			}
+		}
+		else if(getESource().equals(other)){
+			if(Generator.getEnergyCost(getEuse(), "grid") > Generator.getEnergyCost(getEuse(), "other"))	{	
+				setESource("other");					// set to other since it's cheaper
+				this.setEage(0); 						// set the age of the energy source back to zero
+				System.out.println("New source is other");
+			}
+			else{
+				setESource("grid");
+				this.setEage(0); 						// set the age of the energy source back to zero
+				System.out.println("New source is grid");
+			}
+		}
+	}
+	  // Public getter for the data gatherer for counting 
+	@Override
+	public int isGrid() {
+		String grid = "grid";
+		if(getESource().equals(grid)){
+			return 1;
+		}
+		else{
+			return 0;	
+		}
+	}
+	  // Public getter for the data gatherer for counting 
+	@Override
+	public int isOther() {
+		String other = "other";
+		if(getESource().equals(other)){
+			return 1;
+		}
+		else{
+			return 0;	
+		}
+	}
+	
+	public double totalEnergyCost(){
+		return Generator.getEnergyCost(getEuse(), getESource());
+	}
+	
 }
