@@ -1,0 +1,35 @@
+<repast.simphony.data.logging.outputter.engine.DefaultFileOutputterDescriptor>
+  <name>File Outputter</name>
+  <outputterFactory class="repast.simphony.data.logging.outputter.engine.DefaultFileOutputterDescriptor$1">
+    <outer-class reference="../.."/>
+  </outputterFactory>
+  <dataSetHandler>
+    <dataSets>
+      <string>Agent Count</string>
+      <string>Consumer Data Set</string>
+    </dataSets>
+  </dataSetHandler>
+  <streamHandler>
+    <columns>
+      <string>Run Number</string>
+      <string>Tick</string>
+      <string>grid_sum</string>
+      <string>other_sum</string>
+      <string>energy_cost</string>
+      <string>CO2_output</string>
+      <string>LNS_output</string>
+    </columns>
+  </streamHandler>
+  <isBatchAction>false</isBatchAction>
+  <dataSetId class="string">Agent Count</dataSetId>
+  <fileName>/Users/Jason/Documents/Dropbox/TU Delft/Thesis/Data/ModelOutput.csv</fileName>
+  <insertTimeToFileName>true</insertTimeToFileName>
+  <appendToFile>true</appendToFile>
+  <writeHeader>true</writeHeader>
+  <formatType class="repast.simphony.data.logging.outputter.LMDelimitedFormatter">
+    <streamHandler>
+      <columns/>
+    </streamHandler>
+  </formatType>
+  <delimiter>,</delimiter>
+</repast.simphony.data.logging.outputter.engine.DefaultFileOutputterDescriptor>

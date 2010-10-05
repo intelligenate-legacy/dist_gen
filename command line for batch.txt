@@ -1,0 +1,57 @@
+java -cp %PLUGINS%\repast.simphony.batch_%VERSION%\bin;%PLUGINS%\repast.simphony.runtime_%VERSION%\lib\*;%PLUGINS%\repast.simphony.core_%VERSION%\lib\*;%PLUGINS%\repast.simphony.core_%VERSION%\bin;%PLUGINS%\repast.simphony.bin_and_src_%VERSION%\*;%PLUGINS%\repast.simphony.score.runtime_%VERSION%\lib\*;%PLUGINS%\repast.simphony.data_%VERSION%\lib\*;%MODELFOLDER%\bin repast.simphony.batch.BatchMain -params %BATCHPARAMS% %MODELFOLDER%\%MODELNAME%.rs 
+
+
+java -cp $ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/bin/*:$ECLIPSEHOME/plugins/repast.simphony.runtime/bin/:$ECLIPSEHOME/plugins/repast.simphony.runtime/lib/*:$ECLIPSEHOME/plugins/repast.simphony.batch/bin:$ECLIPSEHOME/plugins/repast.simphony.core/lib/commons-cli-1.0.jar:$ECLIPSEHOME/plugins/repast.simphony.bin_and_src.jar:./bin/repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
+
+java -cp $ECLIPSEHOME/repast.simphony.batch_1.2.0/bin/*:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/bin/:$ECLIPSEHOME/plugins/repast.simphony.bin_and_src_1.2.0/*:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.data_1.2.0/lib/*:./bin/ repast.simphony.batch.BatchMain -params batch/batch_params.xml ./distgen.rs
+
+
+
+java -Xms32m -Xmx1024m -cp
+$CLASSPATH:$ECLIPSEHOME/plugins/repast.simphony.runtime/bin/*:$ECLIPSEHO
+ME/plugins/repast.simphony.runtime/bin/:$ECLIPSEHOME/plugins/repast.simp
+hony.runtime/lib/*:$ECLIPSEHOME/plugins/repast.simphony.batch/bin:$ECLIP
+SEHOME/plugins/repast.simphony.core/lib/commons-cli-1.0.jar:$ECLIPSEHOME
+/plugins/repast.simphony.bin_and_src.jar:./bin/
+repast.simphony.batch.BatchMain -params batch/batch_params.xml
+-interactive burgdsim.rs
+
+NO
+java -cp $ECLIPSEHOME/plugins/repast.simphony.batch_1.2.0/bin/*:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/bin/:$ECLIPSEHOME/plugins/repast.simphony.bin_and_src_1.2.0/*:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.data_1.2.0/lib/*:./bin repast.simphony.batch.BatchMain -params batch/batch_params.xml ./distgen.rs
+
+<parameter name="eCostGrid" type="list" value_type="double" values="0.11 0.1 0.09 0.08 0.07 0.06 0.05 0.04 0.03 0.2" />
+
+NO
+java -cp $ECLIPSEHOME/plugins/repast.simphony.batch_1.2.0/bin:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/bin:$ECLIPSEHOME/plugins/repast.simphony.bin_and_src_1.2.0/*:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.data_1.2.0/lib/*:./bin repast.simphony.batch.BatchMain -params ./batch/batch_params.xml ./distgen.rs
+
+NO
+java -cp $ECLIPSEHOME/plugins/repast.simphony.batch_1.2.0/bin:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.core_1.2.0/bin:$ECLIPSEHOME/plugins/repast.simphony.bin_and_src_1.2.0/*:$ECLIPSEHOME/plugins/repast.simphony.runtime_1.2.0/lib/*:$ECLIPSEHOME/plugins/repast.simphony.data_1.2.0/lib/*:/Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/bin repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
+
+NO
+java -cp /Applications/eclipse/plugins/repast.simphony.batch_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.bin_and_src_1.2.0/*:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.data_1.2.0/lib/*:/Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/bin repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
+
+NO
+java -cp /Applications/eclipse/plugins/repast.simphony.batch_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.bin_and_src_1.2.0/*:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.data_1.2.0/lib/*:/Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/bin repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
+
+
+YES
+java -cp /Applications/eclipse/plugins/repast.simphony.batch_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.bin_and_src_1.2.0/*:/Applications/eclipse/plugins/repast.simphony.score.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.data_1.2.0/lib/*:/Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/bin repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

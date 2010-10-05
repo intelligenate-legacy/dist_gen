@@ -26,15 +26,15 @@
   <seriesType>LINE</seriesType>
   <series>
     <repast.simphony.chart.Series>
-      <seriesID>Consumers on other</seriesID>
-      <valueColumn>other_sum</valueColumn>
-      <hashCode>-1003526721</hashCode>
-      <proxy>true</proxy>
-    </repast.simphony.chart.Series>
-    <repast.simphony.chart.Series>
       <seriesID>Consumers on grid</seriesID>
       <valueColumn>grid_sum</valueColumn>
       <hashCode>-1738288209</hashCode>
+      <proxy>true</proxy>
+    </repast.simphony.chart.Series>
+    <repast.simphony.chart.Series>
+      <seriesID>Consumers on other</seriesID>
+      <valueColumn>other_sum</valueColumn>
+      <hashCode>-1003526721</hashCode>
       <proxy>true</proxy>
     </repast.simphony.chart.Series>
   </series>
