@@ -1,6 +1,6 @@
 <repast.simphony.data.engine.DefaultDataGathererDescriptor>
-  <name>Generator Count</name>
-  <dataSetId class="string">Agent Count</dataSetId>
+  <name>Consumer Data Set</name>
+  <dataSetId class="string">Consumer Data Set</dataSetId>
   <scheduleParameters>
     <start>1.0</start>
     <interval>1.0</interval>
@@ -15,29 +15,53 @@
   <aggregateContainer class="repast.simphony.data.logging.gather.DefaultAggregateDataMappingContainer">
     <nameMappingTable>
       <entry>
-        <string>Tick</string>
-        <repast.simphony.data.logging.gather.DefaultTimeDataMapping/>
-      </entry>
-      <entry>
-        <string>grid_sum</string>
+        <string>energy_cost</string>
         <repast.simphony.data.logging.gather.aggregate.SumMapping>
           <type>Sum</type>
           <decorated class="repast.simphony.data.logging.gather.MethodMapping">
             <method>
-              <class>distgen.SimpleAgent</class>
-              <name>isGrid</name>
+              <class>distgen.Consumer</class>
+              <name>getTotalEnergyCost</name>
               <parameter-types/>
             </method>
           </decorated>
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
       <entry>
-        <string>Run Number</string>
-        <repast.simphony.data.logging.gather.RunNumberMapping>
-          <runNumber>1</runNumber>
-        </repast.simphony.data.logging.gather.RunNumberMapping>
+        <string>CO2_output</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>getTotalCO2Output</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
       <entry>
+        <string>LNS_output</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>getTotalLNS</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Tick</string>
+        <repast.simphony.data.logging.gather.DefaultTimeDataMapping/>
+      </entry>
+      <entry>
+        <string>Run Number</string>
+        <repast.simphony.data.logging.gather.RunNumberMapping/>
+      </entry>
+	  <entry>
         <string>other_sum</string>
         <repast.simphony.data.logging.gather.aggregate.SumMapping>
           <type>Sum</type>
@@ -50,27 +74,52 @@
           </decorated>
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
+	  <entry>
+        <string>grid_sum</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.SimpleAgent</class>
+              <name>isGrid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
     </nameMappingTable>
     <mappingNameTable>
       <entry>
-        <repast.simphony.data.logging.gather.RunNumberMapping reference="../../../nameMappingTable/entry[3]/repast.simphony.data.logging.gather.RunNumberMapping"/>
-        <string>Run Number</string>
-      </entry>
-      <entry>
-        <repast.simphony.data.logging.gather.DefaultTimeDataMapping reference="../../../nameMappingTable/entry/repast.simphony.data.logging.gather.DefaultTimeDataMapping"/>
+        <repast.simphony.data.logging.gather.DefaultTimeDataMapping reference="../../../nameMappingTable/entry[4]/repast.simphony.data.logging.gather.DefaultTimeDataMapping"/>
         <string>Tick</string>
       </entry>
       <entry>
-        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[2]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
-        <string>grid_sum</string>
+        <repast.simphony.data.logging.gather.RunNumberMapping reference="../../../nameMappingTable/entry[5]/repast.simphony.data.logging.gather.RunNumberMapping"/>
+        <string>Run Number</string>
       </entry>
       <entry>
-        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[4]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>energy_cost</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[2]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>CO2_output</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[3]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>LNS_output</string>
+      </entry>
+	<entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[7]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>grid_sum</string>
+      </entry>
+	<entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[6]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
         <string>other_sum</string>
       </entry>
     </mappingNameTable>
     <alternatedNameTable/>
     <nameAlternatedTable/>
   </aggregateContainer>
-  <agentClass>distgen.SimpleAgent</agentClass>
+  <agentClass>distgen.Consumer</agentClass>
 </repast.simphony.data.engine.DefaultDataGathererDescriptor>

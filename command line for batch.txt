@@ -34,7 +34,7 @@ NO
 java -cp /Applications/eclipse/plugins/repast.simphony.batch_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.bin_and_src_1.2.0/*:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.data_1.2.0/lib/*:/Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/bin repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
 
 
-YES
+YES!
 java -cp /Applications/eclipse/plugins/repast.simphony.batch_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.core_1.2.0/bin:/Applications/eclipse/plugins/repast.simphony.bin_and_src_1.2.0/*:/Applications/eclipse/plugins/repast.simphony.score.runtime_1.2.0/lib/*:/Applications/eclipse/plugins/repast.simphony.data_1.2.0/lib/*:/Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/bin repast.simphony.batch.BatchMain -params /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/batch/batch_params.xml /Users/Jason/Documents/Dropbox/TU\ Delft/Thesis/Code/dist_gen/distgen.rs
 
 

@@ -1,5 +1,5 @@
 <repast.simphony.data.logging.outputter.engine.DefaultFileOutputterDescriptor>
-  <name>File Outputter</name>
+  <name>Cost Output</name>
   <outputterFactory class="repast.simphony.data.logging.outputter.engine.DefaultFileOutputterDescriptor$1">
     <outer-class reference="../.."/>
   </outputterFactory>
@@ -12,8 +12,6 @@
     <columns>
       <string>Run Number</string>
       <string>Tick</string>
-      <string>grid_sum</string>
-      <string>other_sum</string>
       <string>energy_cost</string>
       <string>CO2_output</string>
       <string>LNS_output</string>
@@ -21,7 +19,7 @@
   </streamHandler>
   <isBatchAction>false</isBatchAction>
   <dataSetId class="string">Consumer Data Set</dataSetId>
-  <fileName>/Users/Jason/Documents/Dropbox/TU Delft/Thesis/Data/ModelOutput.csv</fileName>
+  <fileName>/Users/Jason/Documents/Dropbox/TU Delft/Thesis/Data/CostOutput.csv</fileName>
   <insertTimeToFileName>true</insertTimeToFileName>
   <appendToFile>true</appendToFile>
   <writeHeader>true</writeHeader>

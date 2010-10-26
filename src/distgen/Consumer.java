@@ -53,6 +53,7 @@ import repast.simphony.query.space.grid.GridWithin;
 import repast.simphony.space.graph.Network;
 import repast.simphony.query.space.graph.NetworkAdjacent;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import edu.uci.ics.jung.graph.Graph;
 
 public class Consumer extends SimpleAgent{
 	private double eUse = 0;			// electricity use
@@ -62,6 +63,7 @@ public class Consumer extends SimpleAgent{
 	private double lNSprev = 0;			// calculated level of need satisfaction
 	private double uncertainty = 0;		// difference between the expected LNS and the actual LNS
 	private String consumerType;		// consumer type
+
 
 	
    @Parameter (displayName = "eUse", usageName = "eUse")
@@ -161,8 +163,9 @@ public class Consumer extends SimpleAgent{
 		String eSource = (String)p.getValue("eSource");						// energy source
 		double ageOfEnergy = (Double)p.getValue("ageOfEnergy");				// age of the consumers energy system
 		double polSen = (Double)p.getValue("polSen");						// pollution sensitivity
-		String consumerType = "nothing";												// Get the consumer type from the environment parameters
+		String consumerType = "nothing";									// Get the consumer type from the environment parameters
 		double uncertainty = (Double)p.getValue("uncertainty");				// the consumers uncertainty surrounding 
+		
 		
 		//setting the seed makes the random draws from the distributions the same for each agent
 		//RandomHelper.setSeed(776);	//could also make this a parameter
@@ -205,6 +208,7 @@ public class Consumer extends SimpleAgent{
 	    // Get the context in which the consumer resides.
 			Context context = ContextUtils.getContext(this);
 			Parameters p = RunEnvironment.getInstance().getParameters();
+//			Network network = FindNetwork("ConsumerNetwork");				// this line was used to show the network graph but it really slows down the run and when it's in the consumers never switch off of the grid
 			
 			double lNSmin = (Double)p.getValue("lNSmin");
 			double uncertaintyMax = (Double)p.getValue("uncertaintyMax");
@@ -248,6 +252,12 @@ public class Consumer extends SimpleAgent{
 				System.out.println("Age of energy is: " + this.getAgeOfEnergy());
 			}
 			
+			initDemand(consumerType);
+									
+//			ORANetWriter writer = new ORANetWriter();
+			 
+//			writer.save(network.getName(), (Graph) network, "ConNetwork");
+			
 	}
 	
 	private String initConsumerType(int nextRandomInt) {
@@ -290,11 +300,18 @@ public class Consumer extends SimpleAgent{
 	private void initDemand(String consumerType) {
 		Parameters p = RunEnvironment.getInstance().getParameters();
 
-		double avgDemandSingleFamDetach = (Double)p.getValue("avgDemandSingleFamDetach");		// average electricity demand for a single family detached home
-		double avgDemandSingleFamAttach = (Double)p.getValue("avgDemandSingleFamAttach");		// average electricity demand for a single family attached home
-		double avgDemandAppt2_4 = (Double)p.getValue("avgDemandAppt2_4");			// average electricity demand for an apartment with 2-4 units
-		double avgDemandAppt5 = (Double)p.getValue("avgDemandAppt5");		// average electricity demand for an apartment with 5+ units
-		double avgDemandMobile = (Double)p.getValue("avgDemandMobile");		// average electricity demand for a mobile home
+		double initAvgDemandSingleFamDetach = (Double)p.getValue("avgDemandSingleFamDetach");		// average electricity demand for a single family detached home
+		double initAvgDemandSingleFamAttach = (Double)p.getValue("avgDemandSingleFamAttach");		// average electricity demand for a single family attached home
+		double initAvgDemandAppt2_4 = (Double)p.getValue("avgDemandAppt2_4");			// average electricity demand for an apartment with 2-4 units
+		double initAvgDemandAppt5 = (Double)p.getValue("avgDemandAppt5");		// average electricity demand for an apartment with 5+ units
+		double initAvgDemandMobile = (Double)p.getValue("avgDemandMobile");		// average electricity demand for a mobile home
+		int tickCount = (int) RunEnvironment.getInstance().getCurrentSchedule().getTickCount(); // gets the tickCount and casts it to an integer
+		double demandMultRef = (Double)p.getValue("demandMultRef" + tickCount);			// 
+		double avgDemandSingleFamDetach = initAvgDemandSingleFamDetach * demandMultRef;
+		double avgDemandSingleFamAttach = initAvgDemandSingleFamAttach * demandMultRef;
+		double avgDemandAppt2_4 = initAvgDemandAppt2_4 * demandMultRef;
+		double avgDemandAppt5 = initAvgDemandAppt5 * demandMultRef;
+		double avgDemandMobile = initAvgDemandMobile * demandMultRef;
 		
 		if (consumerType.equals("singleFamDetach")){
 			// initialize demand around a Poisson distribution

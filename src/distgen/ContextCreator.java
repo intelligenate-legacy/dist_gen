@@ -59,6 +59,8 @@ public class ContextCreator implements ContextBuilder<SimpleAgent> {
 		Parameters p = RunEnvironment.getInstance().getParameters();
 		int numConsumers = (Integer)p.getValue("initialNumConsumers");
 		int numGenerators = (Integer)p.getValue("initialNumGenerators");
+		double rewireProb = (Double)p.getValue("rewireProb");
+		int edges = (Integer)p.getValue("edges");
 //		int vertices = numConsumers + numGenerators;
 //		int numEdgesToAttach = 3;
 //		boolean directed = false;
@@ -77,7 +79,7 @@ public class ContextCreator implements ContextBuilder<SimpleAgent> {
 			context.add(generator);                 // add a new generator to the root context
 		}
 		
-		NetworkGenerator gen = new WattsBetaSmallWorldGenerator(0.2, 6, false);			// build a small world network with 6 edges on each vertex and a rewire probability of 0.2
+		NetworkGenerator gen = new WattsBetaSmallWorldGenerator(rewireProb, edges, false);			// build a small world network with x edges on each vertex and a rewire probability of x as defined in batch_params.xml
 		NetworkBuilder builder = new NetworkBuilder("ConsumerNetwork", context, false);
 		builder.setGenerator(gen);
 		Network net = builder.buildNetwork();

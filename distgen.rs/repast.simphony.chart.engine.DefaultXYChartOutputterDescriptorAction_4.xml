@@ -1,0 +1,41 @@
+<repast.simphony.chart.engine.DefaultXYChartOutputterDescriptor>
+  <name>Generator Choices</name>
+  <outputterFactory class="repast.simphony.chart.wizard.XYChartMappingsStep$XYFactory"/>
+  <dataSetHandler>
+    <dataSets>
+      <string>Consumer Data Set</string>
+    </dataSets>
+  </dataSetHandler>
+  <streamHandler>
+    <columns/>
+  </streamHandler>
+  <isBatchAction>false</isBatchAction>
+  <dataSetId class="string">Consumer Data Set</dataSetId>
+  <showLegend>false</showLegend>
+  <multipleSeries>false</multipleSeries>
+  <xColumnName>Tick</xColumnName>
+  <autoRangeX>false</autoRangeX>
+  <autoRangeY>true</autoRangeY>
+  <visibleXRange>0.0</visibleXRange>
+  <visibleYRange>0.0</visibleYRange>
+  <xMin>0.0</xMin>
+  <xMax>20.0</xMax>
+  <yMin>0.0</yMin>
+  <yMax>0.0</yMax>
+  <maxHistory>500</maxHistory>
+  <seriesType>LINE</seriesType>
+  <series>
+    <repast.simphony.chart.Series>
+      <seriesID>Consumers on grid</seriesID>
+      <valueColumn>grid_sum</valueColumn>
+      <hashCode>-1738288209</hashCode>
+      <proxy>true</proxy>
+    </repast.simphony.chart.Series>
+    <repast.simphony.chart.Series>
+      <seriesID>Consumers on other</seriesID>
+      <valueColumn>other_sum</valueColumn>
+      <hashCode>-1003526721</hashCode>
+      <proxy>true</proxy>
+    </repast.simphony.chart.Series>
+  </series>
+</repast.simphony.chart.engine.DefaultXYChartOutputterDescriptor>

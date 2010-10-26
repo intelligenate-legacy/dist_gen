@@ -24,21 +24,14 @@
 	<parameter name="lNSmin" type="constant" constant_type="number" value="0.7"/>
 	<parameter name="uncertaintyMax" type="constant" constant_type="number" value="0.2"/>
 	<parameter name="uncertainty" type="constant" constant_type="number" value="0.04"/>
-	<!--<parameter name="gamma1" type="number" start="0.8" end="0.8" step="0.1">-->
-		<!--<parameter name="gamma2" type="number" start="0.8" end="0.8" step="0.1">-->
-			<!--<parameter name="gamma3" type="number" start="0.8" end="0.8" step="0.1"/>-->
-			<!--</parameter>-->
-		<!--</parameter>-->
 	<parameter name="gamma1" type="constant" constant_type="number" value="0.25"/>
 	<parameter name="gamma2" type="constant" constant_type="number" value="0.25"/>
 	<parameter name="gamma3" type="constant" constant_type="number" value="0.25"/>
 	<parameter name="abilityTolerance" type="constant" constant_type="number" value="100.0"/>
 	<parameter name="imitateRatio" type="constant" constant_type="number" value="0.5"/>
-	<parameter name="edges" type="constant" constant_type="number" value="6"/>
-	<parameter name="rewireProb" type="constant" constant_type="number" value="0.2"/>
-	<!--<parameter name="edges" type="number" start="2" end="10" step="1">-->
-		<!--<parameter name="rewireProb" type="number" start="0" end="1" step="0.1"/>-->
-		<!--</parameter>-->
+	<parameter name="edges" type="number" start="2" end="10" step="1">
+		<parameter name="rewireProb" type="number" start="0" end="1" step="0.1"/>
+		</parameter>
     <parameter name="eCostGrid1" type="constant" constant_type="number" value="0.106065126" />
     <parameter name="eCostGrid2" type="constant" constant_type="number" value="0.102496371" />
     <parameter name="eCostGrid3" type="constant" constant_type="number" value="0.106552059" />
