@@ -17,6 +17,11 @@
 	<parameter name="personalTasteGrid" type="constant" constant_type="number" value="0.5"/>
 	<parameter name="personalTasteOther" type="constant" constant_type="number" value="0.5"/>
 	<parameter name="budget" type="constant" constant_type="number" value="1277.3"/>
+	<parameter name="budgetSingleFamDetach" type="constant" constant_type="number" value="1346.0"/>
+	<parameter name="budgetSingleFamAttach" type="constant" constant_type="number" value="1201.5"/>
+	<parameter name="budgetAppt2_4" type="constant" constant_type="number" value="955.9"/>
+	<parameter name="budgetAppt5" type="constant" constant_type="number" value="739.1"/>
+	<parameter name="budgetMobile" type="constant" constant_type="number" value="783.2"/>
 	<parameter name="eCostOther" type="constant" constant_type="number" value="0.099"/> 
 	<parameter name="runlength" type="constant" constant_type="number" value="20.0"/>
 	<parameter name="lNSinit" type="constant" constant_type="number" value="0.5"/>
@@ -135,3 +140,60 @@
 
    
 </sweep>
+
+private void initBudget(String consumerType) {
+		// TODO Auto-generated method stub
+		Parameters p = RunEnvironment.getInstance().getParameters();
+
+		double budgetSingleFamDetach = (Double)p.getValue("budgetSingleFamDetach");		// budget of a single family detached home based on the cost of energy in the first year of the simulation
+		double budgetSingleFamAttach = (Double)p.getValue("budgetSingleFamAttach");		// budget of a single family attached home based on the cost of energy in the first year of the simulation
+		double budgetAppt2_4 = (Double)p.getValue("budgetAppt2_4");			// budget of an apartment with 2-4 units based on the cost of energy in the first year of the simulation
+		double budgetAppt5 = (Double)p.getValue("budgetAppt5");		// budget of an apartment with 5+ units based on the cost of energy in the first year of the simulation
+		double budgetMobile = (Double)p.getValue("budgetMobile");		// budget of a mobile home based on the cost of energy in the first year of the simulation
+		
+		if (consumerType.equals("singleFamDetach")){
+			
+			// initialize budget around a Poisson distribution
+			Poisson randomStreamBudget = (Poisson) RandomHelper.createPoisson(budgetSingleFamDetach);
+			
+			this.setBudget(randomStreamBudget.nextInt());    // set the initial energy demand
+			double randomBudget = this.getBudget();
+			System.out.println("random budget for single family detached home is " + randomBudget + " - next int is " + randomStreamBudget.nextInt());
+		}
+		else if (consumerType.equals("singleFamAttach")){											
+			// initialize budget around a Poisson distribution
+			Poisson randomStreamBudget = (Poisson) RandomHelper.createPoisson(budgetSingleFamAttach);
+			
+			this.setBudget(randomStreamBudget.nextInt());    // set the initial energy demand
+			double randomBudget = this.getBudget();
+			System.out.println("random budget for single family attached home is " + randomBudget + " - next int is " + randomStreamBudget.nextInt());
+		}
+		else if (consumerType.equals("appt2_4")){											
+			// initialize budget around a Poisson distribution
+			Poisson randomStreamBudget = (Poisson) RandomHelper.createPoisson(budgetAppt2_4);
+			
+			this.setBudget(randomStreamBudget.nextInt());    // set the initial energy demand
+			double randomBudget = this.getBudget();
+			System.out.println("random budget for an appartment in a 2-4 unit building is " + randomBudget + " - next int is " + randomStreamBudget.nextInt());
+		}
+		else if (consumerType.equals("appt5")){											
+			// initialize budget around a Poisson distribution
+			Poisson randomStreamBudget = (Poisson) RandomHelper.createPoisson(budgetAppt5);
+			
+			this.setBudget(randomStreamBudget.nextInt());    // set the initial energy demand
+			double randomBudget = this.getBudget();
+			System.out.println("random budget for an appartment in a 5+ unit building is " + randomBudget + " - next int is " + randomStreamBudget.nextInt());
+		}
+		else if (consumerType.equals("mobile")){											
+			// initialize budget around a Poisson distribution
+			Poisson randomStreamBudget = (Poisson) RandomHelper.createPoisson(budgetMobile);
+			
+			this.setBudget(randomStreamBudget.nextInt());    // set the initial energy demand
+			double randomBudget = this.getBudget();
+			System.out.println("random budget for an appartment in a mobile home is " + randomBudget + " - next int is " + randomStreamBudget.nextInt());
+		}
+		else {
+			System.out.println("Error in setting budget!");
+			System.out.println("Consumer type is: " + consumerType);
+		}
+	}

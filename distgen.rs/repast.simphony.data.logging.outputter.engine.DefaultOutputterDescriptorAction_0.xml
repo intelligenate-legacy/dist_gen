@@ -14,9 +14,17 @@
       <string>Tick</string>
       <string>grid_sum</string>
       <string>other_sum</string>
+      <string>deliberate_sum</string>
+      <string>compare_sum</string>
+      <string>repeat_sum</string>
+      <string>imitate_sum</string>
       <string>energy_cost</string>
       <string>CO2_output</string>
       <string>LNS_output</string>
+      <string>identity_sum</string>
+      <string>taste_sum</string>
+      <string>leisure_sum</string>
+      <string>subsistance_sum</string>
     </columns>
   </streamHandler>
   <isBatchAction>false</isBatchAction>

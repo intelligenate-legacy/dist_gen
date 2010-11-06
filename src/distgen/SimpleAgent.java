@@ -36,6 +36,50 @@ public class SimpleAgent {
 	public int isOther() {
 		return 0;
 	}
+
+
+	public int isDeliberate() {
+		return 0;
+	}
+
+
+	public int isCompare() {
+		return 0;
+	}
+
+
+	public int isRepeat() {
+		return 0;
+	}
+
+
+	public int isImitate() {
+		return 0;
+	}
+
+
+	public int isIdentity() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isTaste() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isLeisure() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isSubsistance() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
 

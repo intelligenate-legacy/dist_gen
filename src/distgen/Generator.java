@@ -87,16 +87,16 @@ public class Generator extends SimpleAgent{
 		
 		if (eSource.equals(grid)){
 			energyCost = eCostGrid * avgDemand;
-			System.out.println("Energy cost grid is " + energyCost);
+//			System.out.println("Energy cost grid is " + energyCost);
 			return energyCost;
 		}
 		else if (eSource.equals(other)){
 			energyCost = eCostOther * avgDemand;
-			System.out.println("Energy Cost other is " + energyCost);
+//			System.out.println("Energy Cost other is " + energyCost);
 			return energyCost;
 		}
 		else{
-			System.out.println("Energy cost failed");
+			System.out.println("Energy cost failed, eSource is " + eSource);
 			return energyCost;
 		}
 	}
@@ -110,17 +110,17 @@ public class Generator extends SimpleAgent{
 		
 		
 		if (eSource.equals("grid")){
-			cO2Output = carbonOutputGrid * avgDemand;
-			System.out.println("CO2 output from the grid is " + cO2Output);
+			cO2Output = (carbonOutputGrid/1000) * avgDemand;
+//			System.out.println("CO2 output from the grid is " + cO2Output);
 			return cO2Output;
 		}
 		else if (eSource.equals("other")){
-			cO2Output = carbonOutputOther * avgDemand;
-			System.out.println("CO2 output from other source is " + cO2Output);
+			cO2Output = (carbonOutputOther/1000) * avgDemand;
+//			System.out.println("CO2 output from other source is " + cO2Output);
 			return cO2Output;
 		}
 		else{
-			System.out.println("CO2 output failed, CO2 output is: " + cO2Output);
+			System.out.println("CO2 output failed, eSource is " + eSource);
 			return cO2Output;
 		}
 	

@@ -33,7 +33,7 @@ import distgen.SimpleAgent;
  */
 public class ContextCreator implements ContextBuilder<SimpleAgent> {
 
-	private Iterable edges;
+//	private Iterable edges;
 
 	/**
 	 * Builds and returns a context. Building a context consists of filling it with
@@ -73,11 +73,11 @@ public class ContextCreator implements ContextBuilder<SimpleAgent> {
 			Consumer consumer = new Consumer();             // create a new consumer
 			context.add(consumer);                  // add the new consumer to the root context
 		}
-		// Iterate over the number of generators
-		for (int i = 0; i < numGenerators; i++) {
-			Generator generator = new Generator();          // create a new generator
-			context.add(generator);                 // add a new generator to the root context
-		}
+//		// Iterate over the number of generators
+//		for (int i = 0; i < numGenerators; i++) {
+//			Generator generator = new Generator();          // create a new generator
+//			context.add(generator);                 // add a new generator to the root context
+//		}
 		
 		NetworkGenerator gen = new WattsBetaSmallWorldGenerator(rewireProb, edges, false);			// build a small world network with x edges on each vertex and a rewire probability of x as defined in batch_params.xml
 		NetworkBuilder builder = new NetworkBuilder("ConsumerNetwork", context, false);
@@ -85,7 +85,7 @@ public class ContextCreator implements ContextBuilder<SimpleAgent> {
 		Network net = builder.buildNetwork();
 
 		
-		java.util.Iterator<SimpleAgent> list = context.getObjects(Consumer.class).iterator();
+//		java.util.Iterator<SimpleAgent> list = context.getObjects(Consumer.class).iterator();
 	
 		// If running in batch mode, tell the scheduler when to end each run.
 		if (RunEnvironment.getInstance().isBatch()){
