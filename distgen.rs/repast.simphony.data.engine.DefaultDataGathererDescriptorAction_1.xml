@@ -140,57 +140,343 @@
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
       <entry>
-        <string>identity_sum</string>
+        <string>SingleFamDetachGrid</string>
         <repast.simphony.data.logging.gather.aggregate.SumMapping>
           <type>Sum</type>
           <decorated class="repast.simphony.data.logging.gather.MethodMapping">
             <method>
               <class>distgen.Consumer</class>
-              <name>isIdentity</name>
+              <name>isSingleFamDetachGrid</name>
               <parameter-types/>
             </method>
           </decorated>
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
       <entry>
-        <string>taste_sum</string>
+        <string>SingleFamDetachOther</string>
         <repast.simphony.data.logging.gather.aggregate.SumMapping>
           <type>Sum</type>
           <decorated class="repast.simphony.data.logging.gather.MethodMapping">
             <method>
               <class>distgen.Consumer</class>
-              <name>isTaste</name>
+              <name>isSingleFamDetachOther</name>
               <parameter-types/>
             </method>
           </decorated>
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
       <entry>
-        <string>leisure_sum</string>
+        <string>SingleFamAttachGrid</string>
         <repast.simphony.data.logging.gather.aggregate.SumMapping>
           <type>Sum</type>
           <decorated class="repast.simphony.data.logging.gather.MethodMapping">
             <method>
               <class>distgen.Consumer</class>
-              <name>isLeisure</name>
+              <name>isSingleFamAttachGrid</name>
               <parameter-types/>
             </method>
           </decorated>
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
       <entry>
-        <string>subsistance_sum</string>
+        <string>SingleFamAttachOther</string>
         <repast.simphony.data.logging.gather.aggregate.SumMapping>
           <type>Sum</type>
           <decorated class="repast.simphony.data.logging.gather.MethodMapping">
             <method>
               <class>distgen.Consumer</class>
-              <name>isSubsistance</name>
+              <name>isSingleFamAttachOther</name>
               <parameter-types/>
             </method>
           </decorated>
         </repast.simphony.data.logging.gather.aggregate.SumMapping>
       </entry>
+      <entry>
+        <string>Appt2_4Grid</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isAppt2_4Grid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Appt2_4Other</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isAppt2_4Other</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Appt5Grid</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isAppt5Grid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Appt5Other</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isAppt5Other</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>MobileGrid</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isMobileGrid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>MobileOther</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isMobileOther</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>age_10_plus</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>ageCount</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+       </entry>
+       <entry>
+        <string>otherX_sum</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.SimpleAgent</class>
+              <name>isOtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>SingleFamDetachOtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isSingleFamDetachOtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>SingleFamAttachOtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isSingleFamAttachOtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Appt2_4OtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isAppt2_4OtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Appt5OtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isAppt5OtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>MobileOtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isMobileOtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Grid2Grid</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isGrid2Grid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Grid2Other</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isGrid2Other</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Grid2OtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isGrid2OtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Other2Grid</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isOther2Grid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Other2Other</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isOther2Other</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>Other2OtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isOther2OtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry> 
+      <entry>
+        <string>OtherX2Grid</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isOtherX2Grid</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>OtherX2Other</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isOtherX2Other</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+      <entry>
+        <string>OtherX2OtherX</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <type>Sum</type>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>distgen.Consumer</class>
+              <name>isOtherX2OtherX</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>           
     </nameMappingTable>
     <mappingNameTable>
       <entry>
@@ -239,19 +525,107 @@
       </entry>
       <entry>
         <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[12]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
-        <string>identity_sum</string>
+        <string>SingleFamDetachGrid</string>
       </entry>
       <entry>
         <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[13]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
-        <string>taste_sum</string>
+        <string>SingleFamDetachOther</string>
       </entry>
       <entry>
         <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[14]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
-        <string>leisure_sum</string>
+        <string>SingleFamAttachGrid</string>
       </entry>
       <entry>
         <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[15]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
-        <string>subsistance_sum</string>
+        <string>SingleFamAttachOther</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[16]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Appt2_4Grid</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[17]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Appt2_4Other</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[18]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Appt5Grid</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[19]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Appt5Other</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[20]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>MobileGrid</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[21]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>MobileOther</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[22]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>age_10_plus</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[23]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>otherX_sum</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[24]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>SingleFamDetachOtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[25]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>SingleFamAttachOtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[26]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Appt2_4OtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[27]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Appt5OtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[28]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>MobileOtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[29]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Grid2Grid</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[30]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Grid2Other</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[31]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Grid2OtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[32]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Other2Grid</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[33]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Other2Other</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[34]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Other2OtherX</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[35]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>OtherX2Grid</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[36]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>OtherX2Other</string>
+      </entry>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[37]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>OtherX2OtherX</string>
       </entry>
     </mappingNameTable>
     <alternatedNameTable/>

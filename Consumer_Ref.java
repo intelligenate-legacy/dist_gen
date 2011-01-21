@@ -68,9 +68,7 @@ public class Consumer extends SimpleAgent{
 	private String deliberateLNS = "nada";	// when in deliberate mode this is the LNS that is the greatest
 	private double tasteGrid = 0;			// personal taste for electricity coming from the grid
 	private double tasteOther = 0;			// personal taste for electricity coming from other
-	private double tasteOtherX = 0;			// personal taste for electricity coming from other
 	private double demandMult = 0;			// multiplier for the consumer's demand
-	private String switcher = "nada";		// tells what the energy source was switched to 
 
 
 	
@@ -170,28 +168,12 @@ public class Consumer extends SimpleAgent{
        tasteOther = newValue;
    }
    
-   @Parameter (displayName = "tasteOtherX", usageName = "tasteOtherX")
-   public double getTasteOtherX() {
-       return tasteOtherX;
-   }
-   private void setTasteOtherX(double newValue) {
-       tasteOtherX = newValue;
-   }
-   
    @Parameter (displayName = "demandMult", usageName = "demandMult")
    public double getDemandMult() {
        return demandMult;
    }
    private void setDemandMult(double newValue) {
        demandMult = newValue;
-   }
-   
-   @Parameter (displayName = "switcher", usageName = "switcher")
-   public String getSwitcher() {
-       return switcher;
-   }
-   private void setSwitcher(String newValue) {
-       switcher = newValue;
    }
    
 
@@ -234,13 +216,11 @@ public class Consumer extends SimpleAgent{
 		String eSource = (String)p.getValue("eSource");						// energy source
 		double ageOfEnergy = (Double)p.getValue("ageOfEnergy");				// age of the consumers energy system
 		String consumerType = "nothing";									// Get the consumer type from the environment parameters
-		String switcher = "nada";
 		double uncertainty = (Double)p.getValue("uncertainty");				// the consumers uncertainty surrounding
 		double demand = 0;
 		double budget = (Double)p.getValue("budget");
 		double tasteGrid = (Double)p.getValue("personalTasteGrid") * 100;
 		double tasteOther = (Double)p.getValue("personalTasteOther") * 100;
-		double tasteOtherX = (Double)p.getValue("personalTasteOtherX") * 100;
 		String cogProcessing = (String)p.getValue("cogProcessing");
 		String deliberateLNS = (String)p.getValue("deliberateLNS");
 		double demandMult = 0;
@@ -250,34 +230,25 @@ public class Consumer extends SimpleAgent{
 		//RandomHelper.setSeed(776);	//could also make this a parameter
 		
 		Uniform randomStreamUni = (Uniform) RandomHelper.createUniform(1.0,1000.0);
-		Uniform randomStreamUni10 = (Uniform) RandomHelper.createUniform(0.0,10.0);
 		int nextRandomInt = randomStreamUni.nextInt();
 		
 		consumerType = initConsumerType(nextRandomInt);					// initialize housing types to their US average (e.g. 65% single family detached homes, 15% apartments in a 5+ unit building, etc.)
 		
 		demand = initDemand(consumerType);										// initialize the consumer types with average demands around a Poisson distribution for their housing types
 		
-//		randomStreamUni = (Uniform) RandomHelper.createUniform(1.0,100.0);
-		int nextRandomInt2 = randomStreamUni.nextInt();
+		randomStreamUni = (Uniform) RandomHelper.createUniform(1.0,100.0);
 		// initialize ageOfEnergy (which determines when a consumer can switch energy sources) around a uniform distribution
 		// could change this to a distribution around the actual age of housing stock
-		this.setEage(randomStreamUni10.nextInt());    // set the age of the consumer's energy system between 1 and 10 years
+		this.setEage(randomStreamUni.nextInt()/10);    // set the age of the consumer's energy system between 1 and 10 years
 		double randomAgeOfEnergy = this.getAgeOfEnergy();
-//		System.out.println(randomAgeOfEnergy); //"age of energy set to: " +
+//		System.out.println("age of energy set to: " + randomAgeOfEnergy);
 		
 		// initialize electricity source, based on current (2010) choice of energy supplier grid is used by 98% and distributed generation is used by 2% 
-		if (nextRandomInt2 >= 11 && nextRandomInt2 <= 990){
+		if (randomStreamUni.nextInt() > 2){
 			this.setESource("grid");
 		}
-		else if (nextRandomInt2 >= 1 && nextRandomInt2 <= 10){
-			this.setESource("otherX");
-		}
-		else if (nextRandomInt2 >= 991 && nextRandomInt2 <= 1000){
+		else{
 			this.setESource("other");
-		}
-		else {
-			this.setESource("other");
-			System.out.println("Energy source set to " + this.getESource());
 		}
 //		System.out.println("Energy source set to " + this.getESource());
 		
@@ -307,15 +278,6 @@ public class Consumer extends SimpleAgent{
 //		System.out.println("random taste other2 is... " + randomTasteOther);
 		this.setTasteOther(randomTasteOther);    
 		randomTasteOther = this.getTasteOther();
-//		System.out.println("random taste other is " + randomTasteOther);
-		
-		Poisson randomStreamOtherX = (Poisson) RandomHelper.createPoisson(tasteOtherX);
-		double randomTasteOtherX = randomStreamOtherX.nextInt();
-//		System.out.println("random taste other1 is... " + randomTasteOther);
-		randomTasteOtherX = randomTasteOtherX/100;
-//		System.out.println("random taste other2 is... " + randomTasteOther);
-		this.setTasteOtherX(randomTasteOtherX);    
-		randomTasteOtherX = this.getTasteOtherX();
 //		System.out.println("random taste other is " + randomTasteOther);
 	}
 
@@ -347,29 +309,27 @@ public class Consumer extends SimpleAgent{
 			double uncertainty = this.calcUncertainty();
 			setUncertainty(uncertainty);
 			setLNSprev(lNS);
-			this.setCogProcessing("nada");
-			this.setSwitcher("nada");
 			
-			
-			if ((eAge == 10) && (lNS < lNSmin) && (uncertainty > uncertaintyMax)){
-//				System.out.println("Comparing");
-				this.goCompare(eSource, consumerType);
-			}
-			
-			else if ((eAge == 10) && (lNS < lNSmin) && (uncertainty < uncertaintyMax)){
+			if ((eAge >= 10) && (lNS < lNSmin) && (uncertainty < uncertaintyMax)){
 //				System.out.println("Deliberating");
 				this.goDeliberate(eSource);
 			}
 			
-			else if ((eAge == 10) && (lNS > lNSmin) && (uncertainty < uncertaintyMax)){
+			else if ((eAge >= 10) && (lNS < lNSmin) && (uncertainty > uncertaintyMax)){
+//				System.out.println("Comparing");
+				this.goCompare(eSource, consumerType);
+			}
+			
+			else if ((eAge >= 10) && (lNS > lNSmin) && (uncertainty < uncertaintyMax)){
 //				System.out.println("Repeating");
 				this.goRepeat(eSource);
 			}
 			
-			else if ((eAge == 10) && (lNS > lNSmin) && (uncertainty > uncertaintyMax)){
+			else if ((eAge >= 10) && (lNS > lNSmin) && (uncertainty > uncertaintyMax)){
 //				System.out.println("Imitating");
 				this.goImitate(eSource);
 			}
+			
 			else {
 				eAge = eAge + 1;
 				this.setEage(eAge);
@@ -426,7 +386,7 @@ public class Consumer extends SimpleAgent{
 		double initAvgDemandAppt5 = (Double)p.getValue("avgDemandAppt5");		// average electricity demand for an apartment with 5+ units
 		double initAvgDemandMobile = (Double)p.getValue("avgDemandMobile");		// average electricity demand for a mobile home
 		int tickCount = (int) RunEnvironment.getInstance().getCurrentSchedule().getTickCount(); // gets the tickCount and casts it to an integer
-		double demandMultRef = (Double)p.getValue("demandMultLowEcon" + tickCount);			// 
+		double demandMultRef = (Double)p.getValue("demandMultRef" + tickCount);			// 
 		double avgDemandSingleFamDetach = initAvgDemandSingleFamDetach * demandMultRef;
 		double avgDemandSingleFamAttach = initAvgDemandSingleFamAttach * demandMultRef;
 		double avgDemandAppt2_4 = initAvgDemandAppt2_4 * demandMultRef;
@@ -511,7 +471,7 @@ public class Consumer extends SimpleAgent{
 	private double updateDemand(String consumerType) {
 		Parameters p = RunEnvironment.getInstance().getParameters();
 		int tickCount = (int) RunEnvironment.getInstance().getCurrentSchedule().getTickCount(); // gets the tickCount and casts it to an integer
-		double demandMultRef = (Double)p.getValue("demandMultLowEcon" + tickCount);			// 
+		double demandMultRef = (Double)p.getValue("demandMultRef" + tickCount);			// 
 		double initAvgDemandSingleFamDetach = (Double)p.getValue("avgDemandSingleFamDetach");		// average electricity demand for a single family detached home
 		double initAvgDemandSingleFamAttach = (Double)p.getValue("avgDemandSingleFamAttach");		// average electricity demand for a single family attached home
 		double initAvgDemandAppt2_4 = (Double)p.getValue("avgDemandAppt2_4");			// average electricity demand for an apartment with 2-4 units
@@ -558,21 +518,15 @@ public class Consumer extends SimpleAgent{
 		double lNS1 = 0; 	// lNS1 is the level of need satisfaction based on identity and determined by the number of neighbors that consume the same product
 		String grid = "grid";
 		String other = "other";
-		String otherX = "otherX";
 		double gridFriends = this.getGridFriendsCount() + 0.1;
 		double otherFriends = this.getOtherFriendsCount() + 0.1;
-		double otherXFriends = this.getOtherXFriendsCount() + 0.1;
 		
 		if(eSource.equals(grid)){
 			lNS1 = gridFriends/edges;
 //			System.out.println("LNS1 grid is: " + lNS1);
 		}
 		else if (eSource.equals(other)){
-			lNS1 = otherFriends/edges;		
-//			System.out.println("LNS1 other is:" + lNS1);
-		}
-		else if (eSource.equals(otherX)){
-			lNS1 = otherXFriends/edges;		
+			lNS1 = otherFriends/edges;		//not really sure if this is the right way to do LNS1, the Jager paper is unclear
 //			System.out.println("LNS1 other is:" + lNS1);
 		}
 		else{
@@ -585,11 +539,9 @@ public class Consumer extends SimpleAgent{
 	private double getLNS2(String eSource) {
 		double tasteGrid = this.getTasteGrid();
 		double tasteOther = this.getTasteOther();
-		double tasteOtherX = this.getTasteOtherX();
-		double lNS2 = 0; 	// lNS2 is the level of need satisfaction based on personal taste
+		double lNS2 = 0; 	// lNS2 is the level of need satisfaction based on personal taste, not really sure how to do this one...
 		String grid = "grid";
 		String other = "other";
-		String otherX = "otherX";
 //		String eSource = this.getESource();
 		
 		if(eSource.equals(grid)){
@@ -597,9 +549,6 @@ public class Consumer extends SimpleAgent{
 		}
 		else if(eSource.equals(other)){
 			lNS2 = tasteOther;		
-		}
-		else if(eSource.equals(otherX)){
-			lNS2 = tasteOtherX;		
 		}
 		else{
 			System.out.println("Error in LNS2 calculation!");
@@ -612,28 +561,21 @@ public class Consumer extends SimpleAgent{
 		double lNS3 = 0; 	// lNS3 is the level of need satisfaction based on leisure (i.e. cost). A cheaper product means more leisure time.
 		String grid = "grid";
 		String other = "other";
-		String otherX = "otherX";
 //		String eSource = this.getESource();
 		double eDemand = this.getEuse();
 		double energyCostGrid = Generator.getEnergyCost(eDemand, "grid");
 		double energyCostOther = Generator.getEnergyCost(eDemand, "other");
-		double energyCostOtherX = Generator.getEnergyCost(eDemand, "otherX");
 		double budget = this.getBudget();
 		
 		if(eSource.equals(grid)){
 			double newBudget = (energyCostGrid + budget)/2; 	// set the new budget to the average of the previous budget and the latest energy cost
-			if( energyCostOther >= energyCostGrid && energyCostOtherX >= energyCostGrid){
+			if( energyCostOther >= energyCostGrid){
 				lNS3 = energyCostGrid/newBudget;		// lNS3 in this case is always high and the consumer is highly satisfied since his energy source costs less than the other source
 //				System.out.println("LNS3 is " + lNS3);
 				return lNS3;
 			}
-			else if(energyCostOther < energyCostGrid && energyCostOther < energyCostOtherX) {
+			else if(energyCostOther < energyCostGrid) {
 				lNS3 = energyCostOther/newBudget;		// the consumer becomes more unsatisfied with the greater the difference between what he/she is paying and what the other source costs
-//				System.out.println("LNS3 is " + lNS3);
-				return lNS3;
-			}
-			else if (energyCostOtherX < energyCostOther && energyCostOtherX < energyCostGrid){
-				lNS3 = energyCostOtherX/newBudget;		// the consumer becomes more unsatisfied with the greater the difference between what he is paying and what the other source costs
 //				System.out.println("LNS3 is " + lNS3);
 				return lNS3;
 			}
@@ -644,45 +586,18 @@ public class Consumer extends SimpleAgent{
 		}
 		else if (eSource.equals(other)){
 			double newBudget = (energyCostOther + budget)/2; 	// set the new budget to the average of the previous budget and the latest energy cost
-			if( energyCostGrid >= energyCostOther && energyCostOtherX >= energyCostOther){
+			if( energyCostGrid >= energyCostOther){
 				lNS3 = energyCostOther/newBudget;		// lNS3 in this case is always high and the consumer is highly satisfied since his energy source costs less than the other source
 //				System.out.println("LNS3 is " + lNS3);
 				return lNS3;
 			}
-			else if (energyCostGrid < energyCostOther && energyCostGrid < energyCostOtherX){
+			else if (energyCostGrid < energyCostOther){
 				lNS3 = energyCostGrid/newBudget;		// the consumer becomes more unsatisfied with the greater the difference between what he is paying and what the other source costs
-//				System.out.println("LNS3 is " + lNS3);
-				return lNS3;
-			}
-			else if (energyCostOtherX < energyCostOther && energyCostOtherX < energyCostGrid){
-				lNS3 = energyCostOtherX/newBudget;		// the consumer becomes more unsatisfied with the greater the difference between what he is paying and what the other source costs
 //				System.out.println("LNS3 is " + lNS3);
 				return lNS3;
 			}
 			else {
 				System.out.println("Error in LNS3 calculation for other!");
-				return lNS3;
-			}
-		}
-		else if (eSource.equals(otherX)){
-			double newBudget = (energyCostOtherX + budget)/2; 	// set the new budget to the average of the previous budget and the latest energy cost
-			if( energyCostGrid >= energyCostOtherX && energyCostOther >= energyCostOtherX){
-				lNS3 = energyCostOtherX/newBudget;		// lNS3 in this case is always high and the consumer is highly satisfied since his energy source costs less than the other source
-//				System.out.println("LNS3 is " + lNS3);
-				return lNS3;
-			}
-			else if (energyCostGrid < energyCostOther && energyCostGrid < energyCostOtherX){
-				lNS3 = energyCostGrid/newBudget;		// the consumer becomes more unsatisfied with the greater the difference between what he is paying and what the other source costs
-//				System.out.println("LNS3 is " + lNS3);
-				return lNS3;
-			}
-			else if (energyCostOther < energyCostOtherX && energyCostOther < energyCostGrid){
-				lNS3 = energyCostOther/newBudget;		// the consumer becomes more unsatisfied with the greater the difference between what he is paying and what the other source costs
-//				System.out.println("LNS3 is " + lNS3);
-				return lNS3;
-			}
-			else {
-				System.out.println("Error in LNS3 calculation for otherX!");
 				return lNS3;
 			}
 		}
@@ -698,12 +613,10 @@ public class Consumer extends SimpleAgent{
 		double lNS4 = 0; 	// lNS4 is the level of need satisfaction based on sensitivity to pollution
 		String grid = "grid";
 		String other = "other";
-		String otherX = "otherX";
 //		String eSource = this.getESource();
 		double eDemand = this.getEuse();
 		double carbonOutGrid = Generator.getCO2Output(eDemand, "grid");
 		double carbonOutOther = Generator.getCO2Output(eDemand, "other");
-		double carbonOutOtherX = Generator.getCO2Output(eDemand, "otherX");
 
 		
 		if(eSource.equals(grid)){
@@ -713,11 +626,6 @@ public class Consumer extends SimpleAgent{
 		}
 		else if(eSource.equals(other)){
 			lNS4 = 1-exp(-polSen/carbonOutOther);
-//			System.out.println("LNS4 other is " + lNS4);
-			return lNS4;
-		}
-		else if(eSource.equals(otherX)){
-			lNS4 = 1-exp(-polSen/carbonOutOtherX);
 //			System.out.println("LNS4 other is " + lNS4);
 			return lNS4;
 		}
@@ -796,102 +704,47 @@ public class Consumer extends SimpleAgent{
 		
 	}
 	
-	private void setSwitch(String origESource, String newESource){
-		// this function is for gathering data on what sources get switched to
-		
-		if (origESource.equals("grid") && this.getESource().equals("grid")){
-			this.setSwitcher("grid2grid");
-		}
-		else if (origESource.equals("grid") && this.getESource().equals("other")){
-			this.setSwitcher("grid2other");
-		}
-		else if (origESource.equals("grid") && this.getESource().equals("otherX")){
-			this.setSwitcher("grid2otherX");
-		}
-		else if (origESource.equals("other") && this.getESource().equals("grid")){
-			this.setSwitcher("other2grid");
-		}
-		else if (origESource.equals("other") && this.getESource().equals("other")){
-			this.setSwitcher("other2other");
-		}
-		else if (origESource.equals("other") && this.getESource().equals("otherX")){
-			this.setSwitcher("other2otherX");
-		}
-		else if (origESource.equals("otherX") && this.getESource().equals("grid")){
-			this.setSwitcher("otherX2grid");
-		}
-		else if (origESource.equals("otherX") && this.getESource().equals("other")){
-			this.setSwitcher("otherX2other");
-		}
-		else if (origESource.equals("otherX") && this.getESource().equals("otherX")){
-			this.setSwitcher("otherX2otherX");
-		}
-		else{
-			System.out.println("Error in setting switcher, original energy source is: " + origESource + " new energy source is: " + this.getESource());
-		}
-	}
-	
 	private void goDeliberate(String eSource){
 //		System.out.println("In deliberation");
-		
 		this.setCogProcessing("deliberate");
 		double lNSGrid = calcLNS2("grid");
 		double lNSOther = calcLNS2("other");
-		double lNSOtherX = calcLNS2("otherX");
-		String origESource = eSource;
-		String newESource = "nada";
 		
-		if (lNSGrid > lNSOther && lNSGrid > lNSOtherX){
+		if (lNSGrid > lNSOther){
 			this.setESource("grid");
 			this.setEage(0);
 		}
-		else if (lNSOther > lNSGrid && lNSOther > lNSOtherX){
+		else if (lNSOther > lNSGrid){
 			this.setESource("other");
 			this.setEage(0);
 		}
-		else if (lNSOtherX > lNSGrid && lNSOtherX > lNSOther){
-			this.setESource("otherX");
-			this.setEage(0);
-		}
-		else if (lNSGrid == lNSOther && lNSGrid == lNSOtherX){
+		else if (lNSGrid == lNSOther){
 			this.setESource(eSource);
 			this.setEage(0);
 		}
 		else{
-			System.out.println("Error in deliberation: " + "LNSGrid is " + lNSGrid + " LNSOther is " + lNSOther + " LNSOtherX is " +lNSOtherX);
+			System.out.println("Error in deliberation: " + "LNSGrid is " + lNSGrid + " LNSOther is " + lNSOther);
 			this.setEage(0);
 		}
-		
-		newESource = this.getESource();
-		setSwitch(origESource, newESource);
 	}
 
 	private void goCompare(String eSource, String consumerType){
 //		double abilityTolerance = (Double)p.getValue("abilityTolerance");
 		String neighborsEnergyChoice = this.neighborsEnergyChoice(consumerType);
-		String origESource = eSource;
-		String newESource = "nada";
 		this.setCogProcessing("compare");
 		
 		this.setESource(neighborsEnergyChoice);
 		eSource = this.getESource();
 		this.setEage(0);
 //		System.out.println("Comparing, new source is the same as the neighbors: " + eSource);
-		
-		newESource = this.getESource();
-		setSwitch(origESource, newESource);
-		
+
 	}
 
 	private void goRepeat(String eSource){
 		// when satisfied but not uncertain the agent chooses the same source as last time
-		String origESource = eSource;
-		String newESource = "nada";
 		this.setCogProcessing("repeat");
 		this.setESource(eSource);
 		this.setEage(0);
-		newESource = this.getESource();
-		setSwitch(origESource, newESource);
 //		System.out.println("Repeating, new source is the same as before " + eSource);
 	}
 
@@ -899,25 +752,17 @@ public class Consumer extends SimpleAgent{
 		// when satisfied but uncertain the agent imitates what their neighbors are using
 		Parameters p = RunEnvironment.getInstance().getParameters();
 		double imitateRatio = (Double)p.getValue("imitateRatio");
-		String origESource = eSource;
-		String newESource = "nada";
 		double gridFriends = this.getGridFriendsCount() + 1;
 		double otherFriends = this.getOtherFriendsCount() + 1;
-		double otherXFriends = this.getOtherXFriendsCount() + 1;
 		this.setCogProcessing("imitate");
 		
-		if((gridFriends/otherFriends) > imitateRatio && (gridFriends/otherXFriends) > imitateRatio){
+		if((gridFriends/otherFriends) > imitateRatio){
 			this.setESource("grid");
 			this.setEage(0);
 //			System.out.println("Imitating, new source is grid");
 		}
-		else if ((otherFriends/gridFriends) > imitateRatio && (otherFriends/otherXFriends) > imitateRatio){
+		else if ((otherFriends/gridFriends) > imitateRatio){
 			this.setESource("other");
-			this.setEage(0);
-//			System.out.println("Imitating, new source is other");
-		}
-		else if ((otherXFriends/gridFriends) > imitateRatio && (otherXFriends/otherFriends) > imitateRatio){
-			this.setESource("otherX");
 			this.setEage(0);
 //			System.out.println("Imitating, new source is other");
 		}
@@ -926,9 +771,6 @@ public class Consumer extends SimpleAgent{
 			this.setEage(0);
 //			System.out.println("Imitating, new source is the same as before: " + eSource);
 		}
-		
-		newESource = this.getESource();
-		setSwitch(origESource, newESource);
 	}
 	
 	
@@ -968,24 +810,6 @@ public class Consumer extends SimpleAgent{
 		return totalOtherFriends;
 	}
 	
-	public int getOtherXFriendsCount(){
-
-		// Get the context in which the agent is residing
-		Context context = (Context) ContextUtils.getContext (this);
-
-		// Get the network projection from the context
-		Network friends = (Network)context.getProjection("ConsumerNetwork");
-
-		Iterator<Consumer> iterator = friends.getSuccessors(this).iterator();
-		int totalOtherXFriends = 0;
-		while (iterator.hasNext()) {
-			if (((Consumer)iterator.next()).getESource() == "otherX")
-				totalOtherXFriends++;
-		}	
-//		System.out.println("Total other friends is " + totalOtherFriends);
-		return totalOtherXFriends;
-	}
-	
 	private String neighborsEnergyChoice(String consumerType){
 		// Get the context in which the agent is residing
 		Context context = (Context) ContextUtils.getContext (this);
@@ -996,7 +820,6 @@ public class Consumer extends SimpleAgent{
 		Iterator<Consumer> iterator = friends.getSuccessors(this).iterator();
 		int totalGridFriends = 0;
 		int totalOtherFriends = 0;
-		int totalOtherXFriends = 0;
 		String neighborsChoice = "none";
 		while (iterator.hasNext()) {
 			Consumer thisConsumer = (Consumer)iterator.next();
@@ -1006,17 +829,11 @@ public class Consumer extends SimpleAgent{
 			else if (thisConsumer.getConsumerType() == "singleFamDetach" && thisConsumer.getESource() == "other"){
 				totalOtherFriends++;
 			}
-			else if (thisConsumer.getConsumerType() == "singleFamDetach" && thisConsumer.getESource() == "otherX"){
-				totalOtherXFriends++;
-			}
 			else if (thisConsumer.getConsumerType() == "singleFamAttach" && thisConsumer.getESource() == "grid"){ 	
 				totalGridFriends++;
 			}
 			else if (thisConsumer.getConsumerType() == "singleFamAttach" && thisConsumer.getESource() == "other"){
 				totalOtherFriends++;
-			}
-			else if (thisConsumer.getConsumerType() == "singleFamAttach" && thisConsumer.getESource() == "otherX"){
-				totalOtherXFriends++;
 			}
 			else if (thisConsumer.getConsumerType() == "appt2_4" && thisConsumer.getESource() == "grid"){ 	
 				totalGridFriends++;
@@ -1024,17 +841,11 @@ public class Consumer extends SimpleAgent{
 			else if (thisConsumer.getConsumerType() == "appt2_4" && thisConsumer.getESource() == "other"){
 				totalOtherFriends++;
 			}
-			else if (thisConsumer.getConsumerType() == "appt2_4" && thisConsumer.getESource() == "otherX"){
-				totalOtherXFriends++;
-			}
 			else if (thisConsumer.getConsumerType() == "appt5" && thisConsumer.getESource() == "grid"){ 	
 				totalGridFriends++;
 			}
 			else if (thisConsumer.getConsumerType() == "appt5" && thisConsumer.getESource() == "other"){
 				totalOtherFriends++;
-			}
-			else if (thisConsumer.getConsumerType() == "appt5" && thisConsumer.getESource() == "otherX"){
-				totalOtherXFriends++;
 			}
 			else if (thisConsumer.getConsumerType() == "mobile" && thisConsumer.getESource() == "grid"){ 	
 				totalGridFriends++;
@@ -1042,58 +853,46 @@ public class Consumer extends SimpleAgent{
 			else if (thisConsumer.getConsumerType() == "mobile" && thisConsumer.getESource() == "other"){
 				totalOtherFriends++;
 			}
-			else if (thisConsumer.getConsumerType() == "mobile" && thisConsumer.getESource() == "otherX"){
-				totalOtherXFriends++;
-			}
 			else {
 				System.out.println("Error in computing neighborsEnergyChoice 1");
 			}
-			if (totalGridFriends > totalOtherFriends && totalGridFriends > totalOtherXFriends){
+			if (totalGridFriends > totalOtherFriends){
 				neighborsChoice = "grid";
 			}
-			else if (totalOtherFriends > totalGridFriends && totalOtherFriends > totalOtherXFriends){
+			else if (totalOtherFriends > totalGridFriends){
 				neighborsChoice = "other";
 			}
-			else if (totalOtherXFriends > totalGridFriends && totalOtherXFriends > totalOtherFriends){
-				neighborsChoice = "otherX";
-			}
-			else if (totalOtherFriends == totalGridFriends || totalOtherXFriends == totalGridFriends || totalOtherXFriends == totalOtherFriends){
+			else if (totalOtherFriends == totalGridFriends){
 				neighborsChoice = this.compareDeliberate(this.getESource());	//if their friend count is equal deliberate on the best choice
 			}
 			else{
-				System.out.println("Error in computing neighborsEnergyChoice 2, totalGridFriends: " + totalGridFriends + " totalOtherFriends: " + totalOtherFriends + " totalOtherXFriends: " + totalOtherXFriends);
+				System.out.println("Error in computing neighborsEnergyChoice 2");
 			}
 		}	
 //		System.out.println("Neighbors energy choice is mostly " + neighborsChoice);
 		return neighborsChoice;
 	}
 	
-	
 	private String compareDeliberate(String eSource){
-//		System.out.println("In compare -> deliberation");
-//		this.setCogProcessing("compare-deliberate");
+//		System.out.println("In deliberation");
+		this.setCogProcessing("compare-deliberate");
 		double lNSGrid = calcLNS2("grid");
 		double lNSOther = calcLNS2("other");
-		double lNSOtherX = calcLNS2("otherX");
 		String compareDelibChoice = "nada";
 		
-		if (lNSGrid > lNSOther && lNSGrid > lNSOtherX){
+		if (lNSGrid > lNSOther){
 			compareDelibChoice = "grid";
 		}
-		else if (lNSOther > lNSGrid && lNSOther > lNSOtherX){
+		else if (lNSOther > lNSGrid){
 			compareDelibChoice = "other";
 		}
-		else if (lNSOtherX > lNSGrid && lNSOtherX > lNSOther){
-			compareDelibChoice = "otherX";
-		}
-		else if (lNSGrid == lNSOther && lNSGrid == lNSOtherX){
+		else if (lNSGrid == lNSOther){
 			compareDelibChoice = eSource;
 		}
 		else{
 			compareDelibChoice = eSource;
 			System.out.println("Error in deliberation: " + "LNSGrid is " + lNSGrid + " LNSOther is " + lNSOther);
 		}
-		
 		return compareDelibChoice;
 	}
 
@@ -1121,16 +920,14 @@ public class Consumer extends SimpleAgent{
 	}
 	  // Public getter for the data gatherer for counting 
 	@Override
-	public int isOtherX() {
-		String otherX = "otherX";
-		if(getESource().equals(otherX)){
+	public int isDeliberate() {
+		if(getCogProcessing().equals("deliberate")){
 			return 1;
 		}
 		else{
 			return 0;	
 		}
 	}
-	
 	  // Public getter for the data gatherer for counting 
 	@Override
 	public int isCompare() {
@@ -1153,16 +950,6 @@ public class Consumer extends SimpleAgent{
 	}
 	  // Public getter for the data gatherer for counting 
 	@Override
-	public int isDeliberate() {
-		if(getCogProcessing().equals("deliberate")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	  // Public getter for the data gatherer for counting 
-	@Override
 	public int isImitate() {
 		if(getCogProcessing().equals("imitate")){
 			return 1;
@@ -1172,251 +959,39 @@ public class Consumer extends SimpleAgent{
 		}
 	}
 	  // Public getter for the data gatherer for counting 
-
 	@Override
-	public int isSingleFamDetachGrid() {
-		if(getConsumerType().equals("singleFamDetach") && getESource().equals("grid")){
+	public int isIdentity() {
+		if(getCogProcessing().equals("deliberate") && getDeliberateLNS().equals("identity")){
 			return 1;
 		}
 		else{
 			return 0;	
 		}
 	}
-	
-	@Override
-	public int isSingleFamDetachOther() {
-		if(getConsumerType().equals("singleFamDetach") && getESource().equals("other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isSingleFamDetachOtherX() {
-		if(getConsumerType().equals("singleFamDetach") && getESource().equals("otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isSingleFamAttachGrid() {
-		if(getConsumerType().equals("singleFamAttach") && getESource().equals("grid")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isSingleFamAttachOther() {
-		if(getConsumerType().equals("singleFamAttach") && getESource().equals("other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isSingleFamAttachOtherX() {
-		if(getConsumerType().equals("singleFamAttach") && getESource().equals("otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isAppt2_4Grid() {
-		if(getConsumerType().equals("appt2_4") && getESource().equals("grid")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isAppt2_4Other() {
-		if(getConsumerType().equals("appt2_4") && getESource().equals("other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isAppt2_4OtherX() {
-		if(getConsumerType().equals("appt2_4") && getESource().equals("otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isAppt5Grid() {
-		if(getConsumerType().equals("appt5") && getESource().equals("grid")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isAppt5Other() {
-		if(getConsumerType().equals("appt5") && getESource().equals("other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isAppt5OtherX() {
-		if(getConsumerType().equals("appt5") && getESource().equals("otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isMobileGrid() {
-		if(getConsumerType().equals("mobile") && getESource().equals("grid")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isMobileOther() {
-		if(getConsumerType().equals("mobile") && getESource().equals("other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isMobileOtherX() {
-		if(getConsumerType().equals("mobile") && getESource().equals("otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
 	  // Public getter for the data gatherer for counting 
 	@Override
-	public int ageCount() {
-		if(getAgeOfEnergy() == 10){
+	public int isTaste() {
+		if(getCogProcessing().equals("deliberate") && getDeliberateLNS().equals("taste")){
 			return 1;
 		}
 		else{
 			return 0;	
 		}
 	}
-	
+	  // Public getter for the data gatherer for counting 
 	@Override
-	public int isGrid2Grid() {
-		if(getSwitcher().equals("grid2grid")){
+	public int isLeisure() {
+		if(getCogProcessing().equals("deliberate") && getDeliberateLNS().equals("leisure")){
 			return 1;
 		}
 		else{
 			return 0;	
 		}
 	}
-	
+	  // Public getter for the data gatherer for counting 
 	@Override
-	public int isGrid2Other() {
-		if(getSwitcher().equals("grid2other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isGrid2OtherX() {
-		if(getSwitcher().equals("grid2otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isOther2Grid() {
-		if(getSwitcher().equals("other2grid")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isOther2Other() {
-		if(getSwitcher().equals("other2other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isOther2OtherX() {
-		if(getSwitcher().equals("other2otherX")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}	
-	
-	@Override
-	public int isOtherX2Grid() {
-		if(getSwitcher().equals("OtherX2grid")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isOtherX2Other() {
-		if(getSwitcher().equals("otherX2other")){
-			return 1;
-		}
-		else{
-			return 0;	
-		}
-	}
-	
-	@Override
-	public int isOtherX2OtherX() {
-		if(getSwitcher().equals("otherX2otherX")){
+	public int isSubsistance() {
+		if(getCogProcessing().equals("deliberate") && getDeliberateLNS().equals("subsistance")){
 			return 1;
 		}
 		else{

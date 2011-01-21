@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+<sweep runs="100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="batch_params.xsd">
+    <parameter name="consumerType" type="constant" constant_type="string" value="singleFam"/>
+    <parameter name="housingType" type="constant" constant_type="number" value="1"/>
+    <parameter name="eSource" type="constant" constant_type="string" value="grid"/>
+    <parameter name="cogProcessing" type="constant" constant_type="string" value="nada"/>
+    <parameter name="deliberateLNS" type="constant" constant_type="string" value="nada"/>
+    <parameter name="heatSource" type="constant" constant_type="string" value="grid"/>
+    <parameter name="initialNumConsumers" type="constant" constant_type="number" value="3000"/>
+    <!--<parameter name="initialNumConsumers" type="number" start="100" end="10100" step="10000"/>-->
+    <!--<parameter name="numConnections" type="constant" constant_type="number" value="6"/>-->
+    <parameter name="initialNumGenerators" type="constant" constant_type="number" value="2"/>
+    <parameter name="avgDemandSingleFamDetach" type="constant" constant_type="number" value="12949.33571"/>
+    <parameter name="avgDemandSingleFamAttach" type="constant" constant_type="number" value="11559.01071"/>
+    <parameter name="avgDemandAppt2_4" type="constant" constant_type="number" value="9196.153846"/>
+    <parameter name="avgDemandAppt5" type="constant" constant_type="number" value="7110.192366"/>
+    <parameter name="avgDemandMobile" type="constant" constant_type="number" value="7535.135922"/>
+	<parameter name="ageOfEnergy" type="constant" constant_type="number" value="5.0"/>
+	<parameter name="budget" type="constant" constant_type="number" value="0.0"/>
+	<parameter name="polSen" type="constant" constant_type="number" value="1000.0"/>
+	<!--<parameter name="polSen" type="number" start="100.0" end="2500.0" step="100.0"/>-->
+	<!--<parameter name="personalTasteGrid" type="number" start="0.0" end="1.0" step="0.1">-->
+		<!--<parameter name="personalTasteOther" type="number" start="0.0" end="1.0" step="0.1"/>-->
+		<!--</parameter>-->
+	<parameter name="personalTasteGrid" type="constant" constant_type="number" value="0.27"/>
+	<parameter name="personalTasteOther" type="constant" constant_type="number" value="0.55"/>
+	<parameter name="personalTasteOtherX" type="constant" constant_type="number" value="0.55"/>
+	<parameter name="eCostOther" type="constant" constant_type="number" value="0.099"/> 
+	<parameter name="runlength" type="constant" constant_type="number" value="20.0"/>
+	<parameter name="lNSinit" type="constant" constant_type="number" value="0.5"/>
+	<parameter name="lNSprev" type="constant" constant_type="number" value="1.0"/>
+	<!--<parameter name="lNSmin" type="number" start="0" end="1" step=".1">-->
+		<!--<parameter name="uncertaintyMax" type="number" start="0" end="1" step=".1"/>-->
+		<!--</parameter>-->
+	<parameter name="lNSmin" type="constant" constant_type="number" value="0.8"/>
+	<parameter name="uncertaintyMax" type="constant" constant_type="number" value="0.1"/>
+	<!--<parameter name="uncertaintyMax" type="number" start="0" end=".1" step=".01"/>-->
+	<parameter name="uncertainty" type="constant" constant_type="number" value="0.04"/>
+	<!--<parameter name="gamma1" type="list" value_type="double" values="0.291158367 0.635996273 0.853005142 0.055405164 0.429283199 0.542077631 0.17245438 0.979676192 0.776931298 0.371768301">-->
+		<!--<parameter name="gamma2" type="list" value_type="double" values="0.820332092 0.166464811 0.001781606 0.305754025 0.226091308 0.931666428 0.616744367 0.49091229 0.561187615 0.796604191">-->
+			<!--<parameter name="gamma3" type="list" value_type="double" values="0.514829417 0.997362751 0.782827208 0.388802221 0.135165674 0.079489205 0.820788195 0.617539532 0.281381518 0.486078011"/>-->
+			<!--</parameter>-->
+		<!--</parameter>-->
+	<!--<parameter name="gamma1" type="number" start="0" end="1" step="0.1">-->
+	<!--	<parameter name="gamma2" type="number" start="0" end="1" step="0.1">-->
+	<!--		<parameter name="gamma3" type="number" start="0" end="1" step="0.1"/>-->
+	<!--		</parameter>-->
+	<!--	</parameter>-->
+	<parameter name="gamma1" type="constant" constant_type="number" value="0.1"/>
+	<parameter name="gamma2" type="constant" constant_type="number" value="0.3"/>
+	<parameter name="gamma3" type="constant" constant_type="number" value="0.5"/>
+	<parameter name="abilityTolerance" type="constant" constant_type="number" value="100.0"/>
+	<parameter name="imitateRatio" type="constant" constant_type="number" value="0.5"/>
+	<parameter name="edges" type="constant" constant_type="number" value="6"/>
+	<parameter name="rewireProb" type="constant" constant_type="number" value="0.2"/>
+	<!--<parameter name="edges" type="number" start="2" end="10" step="1">-->
+		<!--<parameter name="rewireProb" type="number" start="0" end="1" step="0.1"/>-->
+		<!--</parameter>-->
+	<parameter name="carbonOutOther1" type="constant" constant_type="number" value="1140.0" />
+	<parameter name="carbonOutOther2" type="constant" constant_type="number" value="1134.0" />
+	<parameter name="carbonOutOther3" type="constant" constant_type="number" value="1122.0" />
+	<parameter name="carbonOutOther4" type="constant" constant_type="number" value="1116.0" />
+	<parameter name="carbonOutOther5" type="constant" constant_type="number" value="1110.0" />
+	<parameter name="carbonOutOther6" type="constant" constant_type="number" value="1104.0" />
+	<parameter name="carbonOutOther7" type="constant" constant_type="number" value="1098.0" />
+	<parameter name="carbonOutOther8" type="constant" constant_type="number" value="1092.0" />
+	<parameter name="carbonOutOther9" type="constant" constant_type="number" value="1086.0" />
+	<parameter name="carbonOutOther10" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther11" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther12" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther13" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther14" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther15" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther16" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther17" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther18" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther19" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOther20" type="constant" constant_type="number" value="1080.0" />
+	
+	<parameter name="carbonOutOtherX1" type="constant" constant_type="number" value="1110.0" />
+	<parameter name="carbonOutOtherX2" type="constant" constant_type="number" value="1104.0" />
+	<parameter name="carbonOutOtherX3" type="constant" constant_type="number" value="1098.0" />
+	<parameter name="carbonOutOtherX4" type="constant" constant_type="number" value="1092.0" />
+	<parameter name="carbonOutOtherX5" type="constant" constant_type="number" value="1086.0" />
+	<parameter name="carbonOutOtherX6" type="constant" constant_type="number" value="1080.0" />
+	<parameter name="carbonOutOtherX7" type="constant" constant_type="number" value="1074.0" />
+	<parameter name="carbonOutOtherX8" type="constant" constant_type="number" value="1068.0" />
+	<parameter name="carbonOutOtherX9" type="constant" constant_type="number" value="1062.0" />
+	<parameter name="carbonOutOtherX10" type="constant" constant_type="number" value="1056.0" />
+	<parameter name="carbonOutOtherX11" type="constant" constant_type="number" value="1050.0" />
+	<parameter name="carbonOutOtherX12" type="constant" constant_type="number" value="1047.5" />
+	<parameter name="carbonOutOtherX13" type="constant" constant_type="number" value="1045.0" />
+	<parameter name="carbonOutOtherX14" type="constant" constant_type="number" value="1042.5" />
+	<parameter name="carbonOutOtherX15" type="constant" constant_type="number" value="1040.0" />
+	<parameter name="carbonOutOtherX16" type="constant" constant_type="number" value="1037.5" />
+	<parameter name="carbonOutOtherX17" type="constant" constant_type="number" value="1035.0" />
+	<parameter name="carbonOutOtherX18" type="constant" constant_type="number" value="1032.5" />
+	<parameter name="carbonOutOtherX19" type="constant" constant_type="number" value="1030.0" />
+	<parameter name="carbonOutOtherX20" type="constant" constant_type="number" value="1027.5" />
+	
+	<parameter name="carbonOutGridLowOil1" type="constant" constant_type="number" value="1314.315286" />
+	<parameter name="carbonOutGridLowOil2" type="constant" constant_type="number" value="1314.315286" />
+	<parameter name="carbonOutGridLowOil3" type="constant" constant_type="number" value="1306.854032" />
+	<parameter name="carbonOutGridLowOil4" type="constant" constant_type="number" value="1264.612535" />
+	<parameter name="carbonOutGridLowOil5" type="constant" constant_type="number" value="1243.819193" />
+	<parameter name="carbonOutGridLowOil6" type="constant" constant_type="number" value="1221.908056" />
+	<parameter name="carbonOutGridLowOil7" type="constant" constant_type="number" value="1216.435457" />
+	<parameter name="carbonOutGridLowOil8" type="constant" constant_type="number" value="1202.931190" />
+	<parameter name="carbonOutGridLowOil9" type="constant" constant_type="number" value="1197.971163" />
+	<parameter name="carbonOutGridLowOil10" type="constant" constant_type="number" value="1196.564865" />
+	<parameter name="carbonOutGridLowOil11" type="constant" constant_type="number" value="1190.655772" />
+	<parameter name="carbonOutGridLowOil12" type="constant" constant_type="number" value="1187.367738" />
+	<parameter name="carbonOutGridLowOil13" type="constant" constant_type="number" value="1188.969791" />
+	<parameter name="carbonOutGridLowOil14" type="constant" constant_type="number" value="1190.359509" />
+	<parameter name="carbonOutGridLowOil15" type="constant" constant_type="number" value="1191.037565" />
+	<parameter name="carbonOutGridLowOil16" type="constant" constant_type="number" value="1185.505444" />
+	<parameter name="carbonOutGridLowOil17" type="constant" constant_type="number" value="1184.312291" />
+	<parameter name="carbonOutGridLowOil18" type="constant" constant_type="number" value="1183.409607" />
+	<parameter name="carbonOutGridLowOil19" type="constant" constant_type="number" value="1185.380332" />
+	<parameter name="carbonOutGridLowOil20" type="constant" constant_type="number" value="1181.493932" />
+	<parameter name="eCostGridLowOil-1" type="constant" constant_type="number" value="0.106242" />
+	<parameter name="eCostGridLowOil1" type="constant" constant_type="number" value="0.106242" />
+	<parameter name="eCostGridLowOil2" type="constant" constant_type="number" value="0.101611" />
+	<parameter name="eCostGridLowOil3" type="constant" constant_type="number" value="0.103868" />
+	<parameter name="eCostGridLowOil4" type="constant" constant_type="number" value="0.104394" />
+	<parameter name="eCostGridLowOil5" type="constant" constant_type="number" value="0.104401" />
+	<parameter name="eCostGridLowOil6" type="constant" constant_type="number" value="0.103933" />
+	<parameter name="eCostGridLowOil7" type="constant" constant_type="number" value="0.104182" />
+	<parameter name="eCostGridLowOil8" type="constant" constant_type="number" value="0.104488" />
+	<parameter name="eCostGridLowOil9" type="constant" constant_type="number" value="0.104503" />
+	<parameter name="eCostGridLowOil10" type="constant" constant_type="number" value="0.104343" />
+	<parameter name="eCostGridLowOil11" type="constant" constant_type="number" value="0.104787" />
+	<parameter name="eCostGridLowOil12" type="constant" constant_type="number" value="0.105263" />
+	<parameter name="eCostGridLowOil13" type="constant" constant_type="number" value="0.105601" />
+	<parameter name="eCostGridLowOil14" type="constant" constant_type="number" value="0.106126" />
+	<parameter name="eCostGridLowOil15" type="constant" constant_type="number" value="0.107023" />
+	<parameter name="eCostGridLowOil16" type="constant" constant_type="number" value="0.107835" />
+	<parameter name="eCostGridLowOil17" type="constant" constant_type="number" value="0.108833" />
+	<parameter name="eCostGridLowOil18" type="constant" constant_type="number" value="0.109628" />
+	<parameter name="eCostGridLowOil19" type="constant" constant_type="number" value="0.110565" />
+	<parameter name="eCostGridLowOil20" type="constant" constant_type="number" value="0.111293" />
+	<parameter name="eCostOtherLowOil-1" type="constant" constant_type="number" value="0.139616" />
+	<parameter name="eCostOtherLowOil1" type="constant" constant_type="number" value="0.139616" />
+	<parameter name="eCostOtherLowOil2" type="constant" constant_type="number" value="0.135501" />
+	<parameter name="eCostOtherLowOil3" type="constant" constant_type="number" value="0.131387" />
+	<parameter name="eCostOtherLowOil4" type="constant" constant_type="number" value="0.127272" />
+	<parameter name="eCostOtherLowOil5" type="constant" constant_type="number" value="0.123157" />
+	<parameter name="eCostOtherLowOil6" type="constant" constant_type="number" value="0.119042" />
+	<parameter name="eCostOtherLowOil7" type="constant" constant_type="number" value="0.114927" />
+	<parameter name="eCostOtherLowOil8" type="constant" constant_type="number" value="0.110812" />
+	<parameter name="eCostOtherLowOil9" type="constant" constant_type="number" value="0.106697" />
+	<parameter name="eCostOtherLowOil10" type="constant" constant_type="number" value="0.102581" />
+	<parameter name="eCostOtherLowOil11" type="constant" constant_type="number" value="0.098466" />
+	<parameter name="eCostOtherLowOil12" type="constant" constant_type="number" value="0.095930" />
+	<parameter name="eCostOtherLowOil13" type="constant" constant_type="number" value="0.093394" />
+	<parameter name="eCostOtherLowOil14" type="constant" constant_type="number" value="0.090858" />
+	<parameter name="eCostOtherLowOil15" type="constant" constant_type="number" value="0.088321" />
+	<parameter name="eCostOtherLowOil16" type="constant" constant_type="number" value="0.085785" />
+	<parameter name="eCostOtherLowOil17" type="constant" constant_type="number" value="0.083248" />
+	<parameter name="eCostOtherLowOil18" type="constant" constant_type="number" value="0.080711" />
+	<parameter name="eCostOtherLowOil19" type="constant" constant_type="number" value="0.078173" />
+	<parameter name="eCostOtherLowOil20" type="constant" constant_type="number" value="0.075635" />
+	
+	<parameter name="eCostOtherXLowOil-1" type="constant" constant_type="number" value="0.087980" />
+	<parameter name="eCostOtherXLowOil1" type="constant" constant_type="number" value="0.087980" />
+	<parameter name="eCostOtherXLowOil2" type="constant" constant_type="number" value="0.086402" />
+	<parameter name="eCostOtherXLowOil3" type="constant" constant_type="number" value="0.084824" />
+	<parameter name="eCostOtherXLowOil4" type="constant" constant_type="number" value="0.083247" />
+	<parameter name="eCostOtherXLowOil5" type="constant" constant_type="number" value="0.081670" />
+	<parameter name="eCostOtherXLowOil6" type="constant" constant_type="number" value="0.079939" />
+	<parameter name="eCostOtherXLowOil7" type="constant" constant_type="number" value="0.078459" />
+	<parameter name="eCostOtherXLowOil8" type="constant" constant_type="number" value="0.076980" />
+	<parameter name="eCostOtherXLowOil9" type="constant" constant_type="number" value="0.075461" />
+	<parameter name="eCostOtherXLowOil10" type="constant" constant_type="number" value="0.073874" />
+	<parameter name="eCostOtherXLowOil11" type="constant" constant_type="number" value="0.072287" />
+	<parameter name="eCostOtherXLowOil12" type="constant" constant_type="number" value="0.071790" />
+	<parameter name="eCostOtherXLowOil13" type="constant" constant_type="number" value="0.071295" />
+	<parameter name="eCostOtherXLowOil14" type="constant" constant_type="number" value="0.070801" />
+	<parameter name="eCostOtherXLowOil15" type="constant" constant_type="number" value="0.070308" />
+	<parameter name="eCostOtherXLowOil16" type="constant" constant_type="number" value="0.069817" />
+	<parameter name="eCostOtherXLowOil17" type="constant" constant_type="number" value="0.069327" />
+	<parameter name="eCostOtherXLowOil18" type="constant" constant_type="number" value="0.068691" />
+	<parameter name="eCostOtherXLowOil19" type="constant" constant_type="number" value="0.068301" />
+	<parameter name="eCostOtherXLowOil20" type="constant" constant_type="number" value="0.067880" />
+	
+	<parameter name="demandMultLowOil-1" type="constant" constant_type="number" value="0.983902" />
+	<parameter name="demandMultLowOil1" type="constant" constant_type="number" value="0.983902" />
+	<parameter name="demandMultLowOil2" type="constant" constant_type="number" value="0.983902" />
+	<parameter name="demandMultLowOil3" type="constant" constant_type="number" value="0.990897" />
+	<parameter name="demandMultLowOil4" type="constant" constant_type="number" value="0.967675" />
+	<parameter name="demandMultLowOil5" type="constant" constant_type="number" value="0.958987" />
+	<parameter name="demandMultLowOil6" type="constant" constant_type="number" value="0.953621" />
+	<parameter name="demandMultLowOil7" type="constant" constant_type="number" value="0.951611" />
+	<parameter name="demandMultLowOil8" type="constant" constant_type="number" value="0.947608" />
+	<parameter name="demandMultLowOil9" type="constant" constant_type="number" value="0.946687" />
+	<parameter name="demandMultLowOil10" type="constant" constant_type="number" value="0.947251" />
+	<parameter name="demandMultLowOil11" type="constant" constant_type="number" value="0.947218" />
+	<parameter name="demandMultLowOil12" type="constant" constant_type="number" value="0.945804" />
+	<parameter name="demandMultLowOil13" type="constant" constant_type="number" value="0.946141" />
+	<parameter name="demandMultLowOil14" type="constant" constant_type="number" value="0.946830" />
+	<parameter name="demandMultLowOil15" type="constant" constant_type="number" value="0.949670" />
+	<parameter name="demandMultLowOil16" type="constant" constant_type="number" value="0.948183" />
+	<parameter name="demandMultLowOil17" type="constant" constant_type="number" value="0.949367" />
+	<parameter name="demandMultLowOil18" type="constant" constant_type="number" value="0.950836" />
+	<parameter name="demandMultLowOil19" type="constant" constant_type="number" value="0.953993" />
+	<parameter name="demandMultLowOil20" type="constant" constant_type="number" value="0.952814" />
+
+
+</sweep>

@@ -58,25 +58,157 @@ public class SimpleAgent {
 	}
 
 
-	public int isIdentity() {
+	public int ageCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	public int isTaste() {
+	public int isSingleFamDetachGrid() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	public int isLeisure() {
+	public int isSingleFamDetachOther() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	public int isSubsistance() {
+	public int isSingleFamAttachGrid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isSingleFamAttachOther() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isAppt2_4Grid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isAppt2_4Other() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isAppt5Grid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isAppt5Other() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isMobileGrid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isMobileOther() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isMobileOtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isAppt5OtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isAppt2_4OtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isSingleFamAttachOtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isSingleFamDetachOtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isGrid2Grid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOtherX2OtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOtherX2Other() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOtherX2Grid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOther2OtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOther2Other() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isOther2Grid() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isGrid2OtherX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int isGrid2Other() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
